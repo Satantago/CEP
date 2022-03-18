@@ -27,7 +27,9 @@ architecture RTL of CPU_PC is
         S_Init,
         S_Pre_Fetch,
         S_Fetch,
-        S_Decode
+        S_Decode,
+        S_LUI,
+        S_ADDI
     );
 
     signal state_d, state_q : State_type;
@@ -92,6 +94,7 @@ begin
 
         state_d <= state_q;
 
+
         case state_q is
             when S_Error =>
                 -- Etat transitoire en cas d'instruction non reconnue 
@@ -118,14 +121,49 @@ begin
 
             when S_Decode =>
 
-                state_d <= S_Error;
-
-                -- Décodage effectif des instructions,
-                -- à compléter par vos soins
+                -- On peut aussi utiliser un case, ...
+	   	-- et ne pas le faire juste pour les branchements et auipc
+		if status.IR(6 downto 0) = "0110111" then
+		    cmd.TO_PC_Y_sel <= TO_PC_Y_cst_x04;
+		    cmd.PC_sel <= PC_from_pc;
+		    cmd.PC_we <= '1';
+		    state_d <= S_LUI;
+		elsif status.IR(6 downto 0) = "0010011" then
+		    cmd.TO_PC_Y_sel <= TO_PC_Y_cst_x04;
+		    cmd.PC_sel <= PC_from_pc;
+		    cmd.PC_we <= '1';
+		    state_d <= S_ADDI;
+		else
+		    state_d <= S_Error; -- Pour d ́etecter les rat ́es du d ́ecodage
+	   	end if;
 
 ---------- Instructions avec immediat de type U ----------
 
+	   when S_LUI =>
+		-- rd <- ImmU + 0
+		cmd.PC_X_sel <= PC_X_cst_x00;
+		cmd.PC_Y_sel <= PC_Y_immU;
+		cmd.RF_we <= '1';
+		cmd.DATA_sel <= DATA_from_pc;
+		-- lecture mem[PC]
+		cmd.ADDR_sel <= ADDR_from_pc;
+		cmd.mem_ce <= '1';
+		cmd.mem_we <= '0';
+		-- next state
+		state_d <= S_Fetch;
+
 ---------- Instructions arithmétiques et logiques ----------
+	   when S_ADDI =>
+	   	cmd.ALU_Y_sel <= ALU_Y_immI;
+	   	cmd.ALU_op <= ALU_plus;
+	   	cmd.RF_we <= '1';
+	   	cmd.DATA_sel <= DATA_from_alu;
+	   	-- lecture mem[PC]
+		cmd.ADDR_sel <= ADDR_from_pc;
+		cmd.mem_ce <= '1';
+		cmd.mem_we <= '0';
+	   	-- next state
+	   	state_d <= S_fetch;
 
 ---------- Instructions de saut ----------
 
