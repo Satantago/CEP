@@ -1,3 +1,6 @@
 LUI         PASSED  (lui.s)
 ADDI        PASSED  (addi.s)
+ADD         PASSED  (add.s)
+SLL         PASSED  (sll.s)
+AUIPC       PASSED  (auipc.s)
 REBOUCLAGE  PASSED  (rebouclage.s)
