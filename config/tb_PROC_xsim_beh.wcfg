@@ -12,13 +12,13 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="11750000fs"></ZoomStartTime>
-      <ZoomEndTime time="487250001fs"></ZoomEndTime>
-      <Cursor1Time time="408000000fs"></Cursor1Time>
+      <ZoomStartTime time="398917000fs"></ZoomStartTime>
+      <ZoomEndTime time="443067001fs"></ZoomEndTime>
+      <Cursor1Time time="401417000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="170"></NameColumnWidth>
-      <ValueColumnWidth column_width="155"></ValueColumnWidth>
+      <ValueColumnWidth column_width="151"></ValueColumnWidth>
    </column_width_setting>
    <WVObjectSize size="37" />
    <wvobject type="logic" fp_name="/tb_PROC/C_PROC_IO/C_PROC/PC/clk">
@@ -188,22 +188,6 @@
    <wvobject type="group" fp_name="group27">
       <obj_property name="label">Jcond/Slt</obj_property>
       <obj_property name="DisplayName">label</obj_property>
-      <wvobject type="array" fp_name="/tb_PROC/C_PROC_IO/C_PROC/PO/res_diff">
-         <obj_property name="ElementShortName">res_diff[32:0]</obj_property>
-         <obj_property name="ObjectShortName">res_diff[32:0]</obj_property>
-      </wvobject>
-      <wvobject type="logic" fp_name="/tb_PROC/C_PROC_IO/C_PROC/PO/z">
-         <obj_property name="ElementShortName">z</obj_property>
-         <obj_property name="ObjectShortName">z</obj_property>
-      </wvobject>
-      <wvobject type="logic" fp_name="/tb_PROC/C_PROC_IO/C_PROC/PO/s">
-         <obj_property name="ElementShortName">s</obj_property>
-         <obj_property name="ObjectShortName">s</obj_property>
-      </wvobject>
-      <wvobject type="logic" fp_name="/tb_PROC/C_PROC_IO/C_PROC/PO/sign_extend">
-         <obj_property name="ElementShortName">sign_extend</obj_property>
-         <obj_property name="ObjectShortName">sign_extend</obj_property>
-      </wvobject>
    </wvobject>
    <wvobject fp_name="divider32" type="divider">
       <obj_property name="label">CSR</obj_property>
@@ -212,38 +196,6 @@
    <wvobject type="group" fp_name="group33">
       <obj_property name="label">Csr</obj_property>
       <obj_property name="DisplayName">label</obj_property>
-      <wvobject type="array" fp_name="/tb_PROC/C_PROC_IO/C_PROC/PO/TO_CSR_value">
-         <obj_property name="ElementShortName">TO_CSR_value[31:0]</obj_property>
-         <obj_property name="ObjectShortName">TO_CSR_value[31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_PROC/C_PROC_IO/C_PROC/PO/MCAUSE_q">
-         <obj_property name="ElementShortName">MCAUSE_q[31:0]</obj_property>
-         <obj_property name="ObjectShortName">MCAUSE_q[31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_PROC/C_PROC_IO/C_PROC/PO/MTVAL_q">
-         <obj_property name="ElementShortName">MTVAL_q[31:0]</obj_property>
-         <obj_property name="ObjectShortName">MTVAL_q[31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_PROC/C_PROC_IO/C_PROC/PO/MIP_q">
-         <obj_property name="ElementShortName">MIP_q[31:0]</obj_property>
-         <obj_property name="ObjectShortName">MIP_q[31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_PROC/C_PROC_IO/C_PROC/PO/MIE_q">
-         <obj_property name="ElementShortName">MIE_q[31:0]</obj_property>
-         <obj_property name="ObjectShortName">MIE_q[31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_PROC/C_PROC_IO/C_PROC/PO/MSTATUS_q">
-         <obj_property name="ElementShortName">MSTATUS_q[31:0]</obj_property>
-         <obj_property name="ObjectShortName">MSTATUS_q[31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_PROC/C_PROC_IO/C_PROC/PO/MTVEC_q">
-         <obj_property name="ElementShortName">MTVEC_q[31:0]</obj_property>
-         <obj_property name="ObjectShortName">MTVEC_q[31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_PROC/C_PROC_IO/C_PROC/PO/MEPC_q">
-         <obj_property name="ElementShortName">MEPC_q[31:0]</obj_property>
-         <obj_property name="ObjectShortName">MEPC_q[31:0]</obj_property>
-      </wvobject>
       <wvobject type="array" fp_name="/tb_PROC/C_PROC_IO/C_PROC/PO/CSR_value">
          <obj_property name="ElementShortName">CSR_value[31:0]</obj_property>
          <obj_property name="ObjectShortName">CSR_value[31:0]</obj_property>
@@ -397,21 +349,9 @@
       <obj_property name="label">LED</obj_property>
       <obj_property name="DisplayName">label</obj_property>
       <obj_property name="isExpanded"></obj_property>
-      <wvobject type="logic" fp_name="/tb_PROC/C_PROC_IO/C_LED/from_pout_d">
-         <obj_property name="ElementShortName">from_pout_d</obj_property>
-         <obj_property name="ObjectShortName">from_pout_d</obj_property>
-      </wvobject>
-      <wvobject type="logic" fp_name="/tb_PROC/C_PROC_IO/C_LED/from_pout_q">
-         <obj_property name="ElementShortName">from_pout_q</obj_property>
-         <obj_property name="ObjectShortName">from_pout_q</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/tb_PROC/C_PROC_IO/C_LED/led_d">
-         <obj_property name="ElementShortName">led_d[3:0]</obj_property>
-         <obj_property name="ObjectShortName">led_d[3:0]</obj_property>
-      </wvobject>
       <wvobject type="array" fp_name="/tb_PROC/C_PROC_IO/C_LED/led_q">
-         <obj_property name="ElementShortName">led_q[3:0]</obj_property>
-         <obj_property name="ObjectShortName">led_q[3:0]</obj_property>
+         <obj_property name="ElementShortName">led_q[31:0]</obj_property>
+         <obj_property name="ObjectShortName">led_q[31:0]</obj_property>
       </wvobject>
       <wvobject type="array" fp_name="/tb_PROC/C_PROC_IO/C_LED/led">
          <obj_property name="ElementShortName">led[3:0]</obj_property>

@@ -147,9 +147,6 @@ cmd.ALU_op <= ALU_PLUS;
 			cmd.PC_we <= '1';
 			state_d <= S_ADD;
 		elsif status.IR(6 downto 0) = "0010111" then
-			cmd.TO_PC_Y_sel <= TO_PC_Y_cst_x04;
-			cmd.PC_sel <= PC_from_pc;
-			cmd.PC_we <= '1';
 			state_d <= S_auipc;
 		else
 		    state_d <= S_Error; -- Pour d ́etecter les rat ́es du d ́ecodage
@@ -215,8 +212,12 @@ cmd.ALU_op <= ALU_PLUS;
 		cmd.ADDR_sel <= ADDR_from_pc;
 		cmd.mem_ce <= '1';
 		cmd.mem_we <= '0';
+		--incrémentation PC
+		cmd.TO_PC_Y_sel <= TO_PC_Y_cst_x04;
+		cmd.PC_sel <= PC_from_pc;
+		cmd.PC_we <= '1';
 		-- next state
-		state_d <= S_fetch;
+		state_d <= S_Pre_Fetch;
 	   	
 	   	
 	   	
