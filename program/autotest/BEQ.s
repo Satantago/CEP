@@ -5,7 +5,7 @@
 	li x11 , 15
 	beq x10, x11 , fin
 	fin :
-	     mv x31, 4
+	     li x31, 4
 	
 	
 	# max_cycle 50

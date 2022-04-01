@@ -1,7 +1,7 @@
 addi        PASSED
 add         PASSED
 auipc       PASSED
-BEQ         TIMEOUT
+BEQ         PASSED
 lui         PASSED
 rebouclage  PASSED
 sll         PASSED
