@@ -45,9 +45,9 @@ source /user/8/.base/sekkala/home/errazkim_sekkala/config/autotest.xsim.tcl
 ## }
 ## set tests [regexp -all -inline -- {\S+} $string_test]
 ## puts $string_test
- addi  add  auipc  BEQ  lui  lw  rebouclage  sll  slt
+ addi  add  auipc  BEQ  lui  lw  rebouclage  sll  slt  sw
 ## puts $tests
-addi add auipc BEQ lui lw rebouclage sll slt
+addi add auipc BEQ lui lw rebouclage sll slt sw
 ## foreach test $tests {
 ## 	put "Preparing test: ${test}"
 ## 	file delete test_default.out test_default.irq test_default.setup test_default.mem
@@ -283,5 +283,26 @@ Time: 120 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/8/.base/s
 Failure: Assertion violation
 Time: 120 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/8/.base/sekkala/home/errazkim_sekkala/vhd/bench/tb_autotest.vhd
 $finish called at time : 120 ns : File "/user/8/.base/sekkala/home/errazkim_sekkala/vhd/bench/tb_autotest.vhd" Line 203
+Preparing test: sw
+Running test: sw
+INFO: [Simtcl 6-17] Simulation restarted
+Note: @ 00000400 = 1024
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1024] = 000017B7
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1025] = 00005537
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1026] = 00A7A023
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1027] = 0007AF83
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1028] = FFFFFFFF
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+
+Note: FAILED 
+Time: 190 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/8/.base/sekkala/home/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+Failure: Assertion violation
+Time: 190 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/8/.base/sekkala/home/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+$finish called at time : 190 ns : File "/user/8/.base/sekkala/home/errazkim_sekkala/vhd/bench/tb_autotest.vhd" Line 203
 ## exit
-INFO: [Common 17-206] Exiting xsim at Thu Apr  7 14:26:18 2022...
+INFO: [Common 17-206] Exiting xsim at Thu Apr  7 15:13:52 2022...

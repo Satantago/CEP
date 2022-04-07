@@ -39,7 +39,8 @@ architecture RTL of CPU_PC is
         S_LW1,
         S_LW2,
         S_SW,
-        S_SW1
+        S_SW1,
+        S_JAL
     );
 
     signal state_d, state_q : State_type;
@@ -161,6 +162,8 @@ cmd.cs.CSR_WRITE_mode <= UNDEFINED;
 			cmd.PC_sel <= PC_from_pc;
 			cmd.PC_we <= '1';
 			state_d <= S_sll;
+		elsif status.IR(6 downto 0) = "1101111" then
+			state_d <= S_JAL ;
 		elsif status.IR(6 downto 0) = "0010011" then
 		    cmd.TO_PC_Y_sel <= TO_PC_Y_cst_x04;
 		    cmd.PC_sel <= PC_from_pc;
@@ -267,9 +270,15 @@ cmd.cs.CSR_WRITE_mode <= UNDEFINED;
 		cmd.mem_we <= '0';
 		-- next state
 		state_d <= S_Fetch;
-	   	
-	   	
-	   	
+	when S_JAL =>
+		cmd.DATA_sel <= DATA_from_pc ;
+		cmd.PC_Y_sel <= PC_Y_immU;
+		cmd.PC_X_sel <= PC_X_pc;
+		cmd.TO_PC_Y_sel <= TO_PC_Y_immJ;
+	   	cmd.RF_we <= '1';
+	   	cmd.PC_sel <= PC_from_pc;
+	   	cmd.PC_we <= '1';
+	   	state_d <= S_Pre_Fetch;
 
 ---------- Instructions de chargement à partir de la mémoire ----------
 	when S_LW =>
