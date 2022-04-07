@@ -289,7 +289,6 @@ cmd.cs.CSR_WRITE_mode <= UNDEFINED;
 		cmd.RF_we <= '1';
 		cmd.RF_size_sel <= RF_SIZE_word;
 		state_d <= S_Pre_Fetch;
-
 ---------- Instructions de sauvegarde en mémoire ----------
 	when S_SW =>
 		-- réalise l'addition --
