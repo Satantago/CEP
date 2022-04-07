@@ -7,4 +7,4 @@ lw          PASSED
 rebouclage  PASSED
 sll         PASSED
 slt         PASSED
-sw          FAILED
+sw          PASSED

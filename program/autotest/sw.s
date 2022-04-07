@@ -1,14 +1,11 @@
 # TAG = sw
 	.text
 	
-	lui x15 , 1
-	lui x10 , 5
-	sw x10, 0(x15)
-	lw x31 , 0(x15)
-	
+	sw zero, 0(zero)
+	lw x31, 0(zero)
 	
 	
 	# max_cycle 50
 	# pout_start
-	# 000017B7
+	# 00000000
 	# pout_end

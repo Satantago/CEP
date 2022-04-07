@@ -288,21 +288,19 @@ Running test: sw
 INFO: [Simtcl 6-17] Simulation restarted
 Note: @ 00000400 = 1024
 Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
-Note: memory[1024] = 000017B7
+Note: memory[1024] = 00002023
 Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
-Note: memory[1025] = 00005537
+Note: memory[1025] = 00002F83
 Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
-Note: memory[1026] = 00A7A023
-Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
-Note: memory[1027] = 0007AF83
-Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
-Note: memory[1028] = FFFFFFFF
+Note: memory[1026] = FFFFFFFF
 Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
 
-Note: FAILED 
-Time: 190 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/8/.base/sekkala/home/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+Note: pout expect   : 0x00000000  get : 0x00000000
+Time: 130 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/8/.base/sekkala/home/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+Note: PASSED 
+Time: 130 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/8/.base/sekkala/home/errazkim_sekkala/vhd/bench/tb_autotest.vhd
 Failure: Assertion violation
-Time: 190 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/8/.base/sekkala/home/errazkim_sekkala/vhd/bench/tb_autotest.vhd
-$finish called at time : 190 ns : File "/user/8/.base/sekkala/home/errazkim_sekkala/vhd/bench/tb_autotest.vhd" Line 203
+Time: 130 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/8/.base/sekkala/home/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+$finish called at time : 130 ns : File "/user/8/.base/sekkala/home/errazkim_sekkala/vhd/bench/tb_autotest.vhd" Line 203
 ## exit
-INFO: [Common 17-206] Exiting xsim at Thu Apr  7 15:13:52 2022...
+INFO: [Common 17-206] Exiting xsim at Thu Apr  7 15:33:47 2022...
