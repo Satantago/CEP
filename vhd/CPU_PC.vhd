@@ -34,7 +34,12 @@ architecture RTL of CPU_PC is
         S_sll,
         S_auipc,
         S_BEQ,
-        S_SLT
+        S_SLT,
+        S_LW,
+        S_LW1,
+        S_LW2,
+        S_SW,
+        S_SW1
     );
 
     signal state_d, state_q : State_type;
@@ -56,7 +61,7 @@ begin
     FSM_comb : process (state_q, status)
     begin
 
-        -- Valeurs par défaut de cmd à définir selon les préférences de chacun
+-- Valeurs par défaut de cmd à définir selon les préférences de chacun
 cmd.ALU_op <= ALU_PLUS;
 cmd.LOGICAL_op <= UNDEFINED;
 cmd.ALU_Y_sel <= ALU_Y_immI;
@@ -130,6 +135,16 @@ cmd.cs.CSR_WRITE_mode <= UNDEFINED;
 	   	-- et ne pas le faire juste pour les branchements et auipc
 		if status.IR(6 downto 0) = "1100011" and status.IR(14 downto 12) = "000" then
 			state_d <= S_beq;
+		elsif status.IR(6 downto 0)="0100011" and status.IR(14 downto 12) = "010" then
+			cmd.TO_PC_Y_sel <= TO_PC_Y_cst_x04;
+		    	cmd.PC_sel <= PC_from_pc;
+		    	cmd.PC_we <= '1';
+		    	state_d <= S_SW;
+		elsif status.IR(6 downto 0)="0000011" and status.IR(14 downto 12) = "010" then
+			cmd.TO_PC_Y_sel <= TO_PC_Y_cst_x04;
+		    	cmd.PC_sel <= PC_from_pc;
+		    	cmd.PC_we <= '1';
+		    	state_d <= S_LW;
 		elsif status.IR(6 downto 0) = "0110011" and status.IR(14 downto 12) = "010" then
 			cmd.TO_PC_Y_sel <= TO_PC_Y_cst_x04;
 			cmd.PC_sel <= PC_from_pc;
@@ -257,8 +272,36 @@ cmd.cs.CSR_WRITE_mode <= UNDEFINED;
 	   	
 
 ---------- Instructions de chargement à partir de la mémoire ----------
+	when S_LW =>
+		--réalise l'addition--
+		cmd.AD_Y_sel <= AD_Y_immI;
+		cmd.AD_we <= '1';
+		state_d <= S_LW1;
+	when S_LW1 =>
+		-- acces mémoire--
+		cmd.ADDR_sel <= ADDR_from_ad;
+		cmd.mem_ce <= '1';
+		cmd.mem_we <= '0';
+		state_d <= S_LW2;
+	when S_LW2 =>
+		-- écriture dans le registre --
+		cmd.DATA_sel <= DATA_from_mem;
+		cmd.RF_we <= '1';
+		cmd.RF_size_sel <= RF_SIZE_word;
+		state_d <= S_Pre_Fetch;
 
 ---------- Instructions de sauvegarde en mémoire ----------
+	when S_SW =>
+		-- réalise l'addition --
+		cmd.AD_Y_sel <= AD_Y_immS;
+		cmd.AD_we <= '1';
+		state_d <= S_SW1;
+	when S_SW1 =>
+		-- stocke en mémoire --
+		cmd.ADDR_sel <= ADDR_from_ad;
+		cmd.mem_ce <= '1';
+		cmd.mem_we <= '1';
+		state_d <= S_Pre_Fetch;
 
 ---------- Instructions d'accès aux CSR ----------
 

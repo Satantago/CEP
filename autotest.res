@@ -3,6 +3,7 @@ add         PASSED
 auipc       PASSED
 BEQ         PASSED
 lui         PASSED
+lw          PASSED
 rebouclage  PASSED
 sll         PASSED
 slt         PASSED
