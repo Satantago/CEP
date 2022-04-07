@@ -2,6 +2,7 @@ addi        PASSED
 add         PASSED
 auipc       PASSED
 BEQ         PASSED
+JAL         PASSED
 lui         PASSED
 lw          PASSED
 rebouclage  PASSED
