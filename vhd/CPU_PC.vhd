@@ -68,12 +68,7 @@ architecture RTL of CPU_PC is
 		S_SRLI,
 		S_SLTI,
 		S_SLTIU,
-		S_SLTU,
-		S_BGE,
-		S_BGEU,
-		S_BLT,
-		S_BLTU,
-		S_BNE
+		S_SLTU
     );
 
     signal state_d, state_q : State_type;
@@ -409,7 +404,7 @@ cmd.cs.CSR_WRITE_mode <= UNDEFINED;
 	   	cmd.mem_we <= '0';
 	   	--next state
 	   	state_d <= S_fetch;
-	   when S_SRA =>
+	   when S_SRLI =>
 	   	cmd.SHIFTER_op <= SHIFT_rl;
 	   	cmd.SHIFTER_Y_sel <= SHIFTER_Y_ir_sh;
 	   	cmd.RF_we <= '1';
@@ -672,7 +667,7 @@ cmd.cs.CSR_WRITE_mode <= UNDEFINED;
 		cmd.mem_ce <= '1';
         cmd.mem_we <= '0';
 		state_d <= S_fetch;
-	when S_ANDI =>
+	when S_XORI =>
 		cmd.ALU_Y_sel <= ALU_Y_immI;
 		cmd.LOGICAL_op <= LOGICAL_xor;
 		cmd.DATA_sel <= DATA_from_logical;
