@@ -8,4 +8,5 @@ lw          PASSED
 rebouclage  PASSED
 sll         PASSED
 slt         PASSED
+sub         PASSED
 sw          PASSED

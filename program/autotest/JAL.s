@@ -1,10 +1,11 @@
 # TAG = JAL
 	.text
 	
-	mv x31, zero
-	
+	jal x3 , fin
+	fin:
+	li x31 , 5
 	
 	# max_cycle 50
 	# pout_start
-	# 00000000
+	# 00000005
 	# pout_end
