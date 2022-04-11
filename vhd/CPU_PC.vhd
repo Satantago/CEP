@@ -220,32 +220,13 @@ cmd.cs.CSR_WRITE_mode <= UNDEFINED;
             cmd.PC_sel <= PC_from_pc;
             cmd.PC_we <= '1';   
             state_d <= S_SLTU;
-
-		elsif status.IR(6 downto 0) = "0110111" then
-		    cmd.TO_PC_Y_sel <= TO_PC_Y_cst_x04;
-		    cmd.PC_sel <= PC_from_pc;
-		    cmd.PC_we <= '1';
-		    state_d <= S_LUI;
 		
 		elsif status.IR(6 downto 0) = "0110011" and status.IR(14 downto 12) = "001" then
 			cmd.TO_PC_Y_sel <= TO_PC_Y_cst_x04;
 			cmd.PC_sel <= PC_from_pc;
 			cmd.PC_we <= '1';
 			state_d <= S_sll;
-		elsif status.IR(6 downto 0) = "1101111" then
-			state_d <= S_JAL ;
-		elsif status.IR(6 downto 0) = "1100111" and status.IR(14 downto 12) = "000" then
-			state_d <= S_JALR ;
-		elsif status.IR(6 downto 0) = "0010011" then
-		    cmd.TO_PC_Y_sel <= TO_PC_Y_cst_x04;
-		    cmd.PC_sel <= PC_from_pc;
-		    cmd.PC_we <= '1';
-		    state_d <= S_ADDI;
-		elsif status.IR(6 downto 0) = "0110011" then
-			cmd.TO_PC_Y_sel <= TO_PC_Y_cst_x04;
-			cmd.PC_sel <= PC_from_pc;
-			cmd.PC_we <= '1';
-			state_d <= S_ADD;
+
 		elsif status.IR(6 downto 0) = "0010111" then
 			state_d <= S_auipc;
 		elsif status.IR(31 downto 25) = "0100000" and status.IR(14 downto 12) = "000" and status.IR(6 downto 0) = "0110011" then
@@ -283,31 +264,52 @@ cmd.cs.CSR_WRITE_mode <= UNDEFINED;
 			cmd.PC_sel <= PC_from_pc;
 			cmd.PC_we <= '1';
 			state_d <= S_XORI;
-		elsif status.IR(31 downto 25) = "0000000" and status.IR(14 downto 12) = "001" and stauts.IR(6 downto 0) = "0010011" then
+		elsif status.IR(31 downto 25) = "0000000" and status.IR(14 downto 12) = "001" and status.IR(6 downto 0) = "0010011" then
 			cmd.TO_PC_Y_sel <= TO_PC_Y_cst_x04;
             cmd.PC_sel <= PC_from_pc;
             cmd.PC_we <= '1';
             state_d <= S_SLLI;
-		elsif status.IR(31 downto 25) = "0100000" and status.IR(14 downto 12) = "101" and stauts.IR(6 downto 0) = "0110011" then
+		elsif status.IR(31 downto 25) = "0100000" and status.IR(14 downto 12) = "101" and status.IR(6 downto 0) = "0110011" then
 			cmd.TO_PC_Y_sel <= TO_PC_Y_cst_x04;
             cmd.PC_sel <= PC_from_pc;
             cmd.PC_we <= '1';
             state_d <= S_SRA;
-		elsif status.IR(31 downto 25) = "0100000" and status.IR(14 downto 12) = "101" and stauts.IR(6 downto 0) = "0010011" then
+		elsif status.IR(31 downto 25) = "0100000" and status.IR(14 downto 12) = "101" and status.IR(6 downto 0) = "0010011" then
 			cmd.TO_PC_Y_sel <= TO_PC_Y_cst_x04;
             cmd.PC_sel <= PC_from_pc;
             cmd.PC_we <= '1';
             state_d <= S_SRAI;
-		elsif status.IR(31 downto 25) = "0000000" and status.IR(14 downto 12) = "101" and stauts.IR(6 downto 0) = "0110011" then
+		elsif status.IR(31 downto 25) = "0000000" and status.IR(14 downto 12) = "101" and status.IR(6 downto 0) = "0110011" then
 			cmd.TO_PC_Y_sel <= TO_PC_Y_cst_x04;
             cmd.PC_sel <= PC_from_pc;
             cmd.PC_we <= '1';
             state_d <= S_SRL;
-		elsif status.IR(31 downto 25) = "0000000" and status.IR(14 downto 12) = "101" and stauts.IR(6 downto 0) = "0010011" then
+		elsif status.IR(31 downto 25) = "0000000" and status.IR(14 downto 12) = "101" and status.IR(6 downto 0) = "0010011" then
 			cmd.TO_PC_Y_sel <= TO_PC_Y_cst_x04;
             cmd.PC_sel <= PC_from_pc;
             cmd.PC_we <= '1';
             state_d <= S_SRLI;
+		elsif status.IR(6 downto 0) = "0110011" and status.IR(31 downto 25) = "0000000" and status.IR(14 downto 12) = "000" then
+			cmd.TO_PC_Y_sel <= TO_PC_Y_cst_x04;
+			cmd.PC_sel <= PC_from_pc;
+			cmd.PC_we <= '1';
+			state_d <= S_ADD;
+		
+		elsif status.IR(6 downto 0) = "0110111" then
+		    cmd.TO_PC_Y_sel <= TO_PC_Y_cst_x04;
+		    cmd.PC_sel <= PC_from_pc;
+		    cmd.PC_we <= '1';
+		    state_d <= S_LUI;
+
+		elsif status.IR(6 downto 0) = "1100111" and status.IR(14 downto 12) = "000" then
+			state_d <= S_JALR ;
+		elsif status.IR(6 downto 0) = "1101111" then
+			state_d <= S_JAL ;
+		elsif status.IR(6 downto 0) = "0010011" then
+		    cmd.TO_PC_Y_sel <= TO_PC_Y_cst_x04;
+		    cmd.PC_sel <= PC_from_pc;
+		    cmd.PC_we <= '1';
+		    state_d <= S_ADDI;
 		
 		else
 		    state_d <= S_Error; -- Pour d ́etecter les rat ́es du d ́ecodage
