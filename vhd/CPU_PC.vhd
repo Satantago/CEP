@@ -38,9 +38,39 @@ architecture RTL of CPU_PC is
         S_LW,
         S_LW1,
         S_LW2,
+		S_LB,
+		S_LB1,
+		S_LB2,
+		S_LBU,
+		S_LBU1,
+		S_LBU2,
+		S_LHU,
+		S_LHU1,
+		S_LHU2,
         S_SW,
         S_SW1,
-        S_JAL
+        S_JAL,
+		S_JALR,
+		S_SUB,
+		S_OR,
+		S_ORI,
+		S_AND,
+		S_ANDI,
+		S_XOR,
+		S_XORI,
+		S_SLLI,
+		S_SRA,
+		S_SRAI,
+		S_SRL,
+		S_SRLI,
+		S_SLTI,
+		S_SLTIU,
+		S_SLTU,
+		S_BGE,
+		S_BGEU,
+		S_BLT,
+		S_BLTU,
+		S_BNE
     );
 
     signal state_d, state_q : State_type;
@@ -138,19 +168,56 @@ cmd.cs.CSR_WRITE_mode <= UNDEFINED;
 			state_d <= S_beq;
 		elsif status.IR(6 downto 0)="0100011" and status.IR(14 downto 12) = "010" then
 			cmd.TO_PC_Y_sel <= TO_PC_Y_cst_x04;
-		    	cmd.PC_sel <= PC_from_pc;
-		    	cmd.PC_we <= '1';
-		    	state_d <= S_SW;
+		    cmd.PC_sel <= PC_from_pc;
+			cmd.PC_we <= '1';
+	    	state_d <= S_SW;
 		elsif status.IR(6 downto 0)="0000011" and status.IR(14 downto 12) = "010" then
 			cmd.TO_PC_Y_sel <= TO_PC_Y_cst_x04;
-		    	cmd.PC_sel <= PC_from_pc;
-		    	cmd.PC_we <= '1';
-		    	state_d <= S_LW;
+		    cmd.PC_sel <= PC_from_pc;
+			cmd.PC_we <= '1';
+	    	state_d <= S_LW;
+		elsif status.IR(6 downto 0)="0000011" and status.IR(14 downto 12) = "000" then
+			cmd.TO_PC_Y_sel <= TO_PC_Y_cst_x04;
+		    cmd.PC_sel <= PC_from_pc;
+			cmd.PC_we <= '1';
+	    	state_d <= S_LB;
+		elsif status.IR(6 downto 0)="0000011" and status.IR(14 downto 12) = "100" then
+			cmd.TO_PC_Y_sel <= TO_PC_Y_cst_x04;
+		    cmd.PC_sel <= PC_from_pc;
+			cmd.PC_we <= '1';
+	    	state_d <= S_LBU;
+		elsif status.IR(6 downto 0)="0000011" and status.IR(14 downto 12) = "001" then
+			cmd.TO_PC_Y_sel <= TO_PC_Y_cst_x04;
+		    cmd.PC_sel <= PC_from_pc;
+			cmd.PC_we <= '1';
+	    	state_d <= S_LH;
+		elsif status.IR(6 downto 0)="0000011" and status.IR(14 downto 12) = "101" then
+			cmd.TO_PC_Y_sel <= TO_PC_Y_cst_x04;
+		    cmd.PC_sel <= PC_from_pc;
+			cmd.PC_we <= '1';
+	    	state_d <= S_LHU;
+		
 		elsif status.IR(6 downto 0) = "0110011" and status.IR(14 downto 12) = "010" then
 			cmd.TO_PC_Y_sel <= TO_PC_Y_cst_x04;
 			cmd.PC_sel <= PC_from_pc;
 			cmd.PC_we <= '1';
 			state_d <= S_SLT;
+		elsif status.IR(14 downto 12) = "010" and status.IR(6 downto 0) = "0010011" then
+			cmd.TO_PC_Y_sel <= TO_PC_Y_cst_x04;
+            cmd.PC_sel <= PC_from_pc;
+            cmd.PC_we <= '1';   
+            state_d <= S_SLTI;
+		elsif status.IR(14 downto 12) = "011" and status.IR(6 downto 0) = "0010011" then
+			cmd.TO_PC_Y_sel <= TO_PC_Y_cst_x04;
+            cmd.PC_sel <= PC_from_pc;
+            cmd.PC_we <= '1';   
+            state_d <= S_SLTIU;
+		elsif status.IR(14 downto 12) = "010" and status.IR(6 downto 0) = "0110011" then
+			cmd.TO_PC_Y_sel <= TO_PC_Y_cst_x04;
+            cmd.PC_sel <= PC_from_pc;
+            cmd.PC_we <= '1';   
+            state_d <= S_SLTU;
+
 		elsif status.IR(6 downto 0) = "0110111" then
 		    cmd.TO_PC_Y_sel <= TO_PC_Y_cst_x04;
 		    cmd.PC_sel <= PC_from_pc;
@@ -164,6 +231,8 @@ cmd.cs.CSR_WRITE_mode <= UNDEFINED;
 			state_d <= S_sll;
 		elsif status.IR(6 downto 0) = "1101111" then
 			state_d <= S_JAL ;
+		elsif status.IR(6 downto 0) = "1100111" and status.IR(14 downto 12) = "000" then
+			state_d <= S_JALR ;
 		elsif status.IR(6 downto 0) = "0010011" then
 		    cmd.TO_PC_Y_sel <= TO_PC_Y_cst_x04;
 		    cmd.PC_sel <= PC_from_pc;
@@ -176,6 +245,67 @@ cmd.cs.CSR_WRITE_mode <= UNDEFINED;
 			state_d <= S_ADD;
 		elsif status.IR(6 downto 0) = "0010111" then
 			state_d <= S_auipc;
+		elsif status.IR(31 downto 25) = "0100000" and status.IR(14 downto 12) = "000" and status.IR(6 downto 0) = "0110011" then
+			cmd.TO_PC_Y_sel <= TO_PC_Y_cst_x04;
+			cmd.PC_sel <= PC_from_pc;
+			cmd.PC_we <= '1';
+			state_d <= S_SUB;
+		elsif status.IR(31 downto 25) = "0000000" and status.IR(14 downto 12) = "110" and status.IR(6 downto 0) = "0110011" then
+			cmd.TO_PC_Y_sel <= TO_PC_Y_cst_x04;
+			cmd.PC_sel <= PC_from_pc;
+			cmd.PC_we <= '1';
+			state_d <= S_OR;
+		elsif status.IR(14 downto 12) = "110" and status.IR(6 downto 0) = "0010011" then
+			cmd.TO_PC_Y_sel <= TO_PC_Y_cst_x04;
+			cmd.PC_sel <= PC_from_pc;
+			cmd.PC_we <= '1';
+			state_d <= S_ORI;
+		elsif status.IR(31 downto 25) = "0000000" and status.IR(14 downto 12) = "111" and status.IR(6 downto 0) = "0110011" then
+			cmd.TO_PC_Y_sel <= TO_PC_Y_cst_x04;
+			cmd.PC_sel <= PC_from_pc;
+			cmd.PC_we <= '1';
+			state_d <= S_AND;
+		elsif status.IR(14 downto 12) = "111" and status.IR(6 downto 0) = "0010011" then
+			cmd.TO_PC_Y_sel <= TO_PC_Y_cst_x04;
+			cmd.PC_sel <= PC_from_pc;
+			cmd.PC_we <= '1';
+			state_d <= S_ANDI;
+		elsif status.IR(31 downto 25) = "0000000" and status.IR(14 downto 12) = "100" and status.IR(6 downto 0) = "0110011" then
+			cmd.TO_PC_Y_sel <= TO_PC_Y_cst_x04;
+			cmd.PC_sel <= PC_from_pc;
+			cmd.PC_we <= '1';
+			state_d <= S_XOR;	
+		elsif status.IR(14 downto 12) = "100" and status.IR(6 downto 0) = "0010011" then
+			cmd.TO_PC_Y_sel <= TO_PC_Y_cst_x04;
+			cmd.PC_sel <= PC_from_pc;
+			cmd.PC_we <= '1';
+			state_d <= S_XORI;
+		elsif status.IR(31 downto 25) = "0000000" and status.IR(14 downto 12) = "001" and stauts.IR(6 downto 0) = "0010011" then
+			cmd.TO_PC_Y_sel <= TO_PC_Y_cst_x04;
+            cmd.PC_sel <= PC_from_pc;
+            cmd.PC_we <= '1';
+            state_d <= S_SLLI;
+		elsif status.IR(31 downto 25) = "0100000" and status.IR(14 downto 12) = "101" and stauts.IR(6 downto 0) = "0110011" then
+			cmd.TO_PC_Y_sel <= TO_PC_Y_cst_x04;
+            cmd.PC_sel <= PC_from_pc;
+            cmd.PC_we <= '1';
+            state_d <= S_SRA;
+		elsif status.IR(31 downto 25) = "0100000" and status.IR(14 downto 12) = "101" and stauts.IR(6 downto 0) = "0010011" then
+			cmd.TO_PC_Y_sel <= TO_PC_Y_cst_x04;
+            cmd.PC_sel <= PC_from_pc;
+            cmd.PC_we <= '1';
+            state_d <= S_SRAI;
+		elsif status.IR(31 downto 25) = "0000000" and status.IR(14 downto 12) = "101" and stauts.IR(6 downto 0) = "0110011" then
+			cmd.TO_PC_Y_sel <= TO_PC_Y_cst_x04;
+            cmd.PC_sel <= PC_from_pc;
+            cmd.PC_we <= '1';
+            state_d <= S_SRL;
+		elsif status.IR(31 downto 25) = "0000000" and status.IR(14 downto 12) = "101" and stauts.IR(6 downto 0) = "0010011" then
+			cmd.TO_PC_Y_sel <= TO_PC_Y_cst_x04;
+            cmd.PC_sel <= PC_from_pc;
+            cmd.PC_we <= '1';
+            state_d <= S_SRLI;
+		
 		else
 		    state_d <= S_Error; -- Pour d ́etecter les rat ́es du d ́ecodage
 		end if;
@@ -229,6 +359,62 @@ cmd.cs.CSR_WRITE_mode <= UNDEFINED;
 	   	cmd.mem_we <= '0';
 	   	--next state
 	   	state_d <= S_fetch;
+	   when S_SLLI =>
+	    	--rd <- rs1 << shamt
+	   	cmd.SHIFTER_op <= SHIFT_ll;
+	   	cmd.SHIFTER_Y_sel <= SHIFTER_Y_ir_sh;
+	   	cmd.RF_we <= '1';
+	   	cmd.DATA_sel <= DATA_from_shifter;
+	   	--lecture mem[PC]
+	   	cmd.ADDR_sel <= ADDR_from_pc;
+	   	cmd.mem_ce <= '1';
+	   	cmd.mem_we <= '0';
+	   	--next state
+	   	state_d <= S_fetch;
+	   when S_SRA =>
+	   	cmd.SHIFTER_op <= SHIFT_ra;
+	   	cmd.SHIFTER_Y_sel <= SHIFTER_Y_rs2;
+	   	cmd.RF_we <= '1';
+	   	cmd.DATA_sel <= DATA_from_shifter;
+	   	--lecture mem[PC]
+	   	cmd.ADDR_sel <= ADDR_from_pc;
+	   	cmd.mem_ce <= '1';
+	   	cmd.mem_we <= '0';
+	   	--next state
+	   	state_d <= S_fetch;
+	   when S_SRAI =>
+	   	cmd.SHIFTER_op <= SHIFT_ra;
+	   	cmd.SHIFTER_Y_sel <= SHIFTER_Y_ir_sh;
+	   	cmd.RF_we <= '1';
+	   	cmd.DATA_sel <= DATA_from_shifter;
+	   	--lecture mem[PC]
+	   	cmd.ADDR_sel <= ADDR_from_pc;
+	   	cmd.mem_ce <= '1';
+	   	cmd.mem_we <= '0';
+	   	--next state
+	   	state_d <= S_fetch;
+	   when S_SRL =>
+	   	cmd.SHIFTER_op <= SHIFT_rl;
+	   	cmd.SHIFTER_Y_sel <= SHIFTER_Y_rs2;
+	   	cmd.RF_we <= '1';
+	   	cmd.DATA_sel <= DATA_from_shifter;
+	   	--lecture mem[PC]
+	   	cmd.ADDR_sel <= ADDR_from_pc;
+	   	cmd.mem_ce <= '1';
+	   	cmd.mem_we <= '0';
+	   	--next state
+	   	state_d <= S_fetch;
+	   when S_SRA =>
+	   	cmd.SHIFTER_op <= SHIFT_rl;
+	   	cmd.SHIFTER_Y_sel <= SHIFTER_Y_ir_sh;
+	   	cmd.RF_we <= '1';
+	   	cmd.DATA_sel <= DATA_from_shifter;
+	   	--lecture mem[PC]
+	   	cmd.ADDR_sel <= ADDR_from_pc;
+	   	cmd.mem_ce <= '1';
+	   	cmd.mem_we <= '0';
+	   	--next state
+	   	state_d <= S_fetch;
 	   when S_auipc =>
 	   	--rd <- (IR_{31.....12} || 0) + pc
 		cmd.PC_Y_sel <= PC_Y_immU;
@@ -270,6 +456,36 @@ cmd.cs.CSR_WRITE_mode <= UNDEFINED;
 		cmd.mem_we <= '0';
 		-- next state
 		state_d <= S_Fetch;
+	when S_SLTI =>
+		cmd.ALU_Y_sel <= ALU_Y_immI;
+		cmd.DATA_sel <= DATA_from_slt;
+		cmd.RF_we <= '1';
+		-- lecture mem[PC]
+		cmd.ADDR_sel <= ADDR_from_pc;
+		cmd.mem_ce <= '1';
+		cmd.mem_we <= '0';
+		-- next state
+		state_d <= S_Fetch;
+	when S_SLTIU =>
+		cmd.ALU_Y_sel <= ALU_Y_immI;
+		cmd.DATA_sel <= DATA_from_slt;
+		cmd.RF_we <= '1';
+		-- lecture mem[PC]
+		cmd.ADDR_sel <= ADDR_from_pc;
+		cmd.mem_ce <= '1';
+		cmd.mem_we <= '0';
+		-- next state
+		state_d <= S_Fetch;
+	when S_SLTU =>
+		cmd.ALU_Y_sel <= ALU_Y_rf_rs2;
+		cmd.DATA_sel <= DATA_from_slt;
+		cmd.RF_we <= '1';
+		-- lecture mem[PC]
+		cmd.ADDR_sel <= ADDR_from_pc;
+		cmd.mem_ce <= '1';
+		cmd.mem_we <= '0';
+		-- next state
+		state_d <= S_Fetch;
 	when S_JAL =>
 		cmd.DATA_sel <= DATA_from_pc ;
 		cmd.PC_Y_sel <= PC_Y_cst_x04;
@@ -277,6 +493,16 @@ cmd.cs.CSR_WRITE_mode <= UNDEFINED;
 		cmd.TO_PC_Y_sel <= TO_PC_Y_immJ;
 	   	cmd.RF_we <= '1';
 	   	cmd.PC_sel <= PC_from_pc;
+	   	cmd.PC_we <= '1';
+	   	state_d <= S_Pre_Fetch;
+	when S_JALR =>
+		cmd.DATA_sel <= DATA_from_pc ;
+		cmd.PC_Y_sel <= PC_Y_cst_x04;
+		cmd.PC_X_sel <= PC_X_pc;
+	   	cmd.RF_we <= '1';
+		cmd.ALU_Y_sel <= ALU_Y_immI ;
+        cmd.AD_Y_sel  <= AD_Y_immI;
+	   	cmd.PC_sel <= PC_from_alu;
 	   	cmd.PC_we <= '1';
 	   	state_d <= S_Pre_Fetch;
 
@@ -298,6 +524,80 @@ cmd.cs.CSR_WRITE_mode <= UNDEFINED;
 		cmd.RF_we <= '1';
 		cmd.RF_size_sel <= RF_SIZE_word;
 		state_d <= S_Pre_Fetch;
+
+	when S_LB =>
+		cmd.AD_Y_sel <= AD_Y_immI;
+		cmd.AD_we <= '1';
+		state_d <= S_LB1;
+	when S_LB1 =>
+		-- acces mémoire--
+		cmd.ADDR_sel <= ADDR_from_ad;
+		cmd.mem_ce <= '1';
+		cmd.mem_we <= '0';
+		state_d <= S_LB2;
+	when S_LB2 =>
+		-- écriture dans le registre --
+		cmd.DATA_sel <= DATA_from_mem;
+		cmd.RF_we <= '1';
+		cmd.RF_SIGN_enable <= '1';
+		cmd.RF_size_sel <= RF_SIZE_byte;
+		state_d <= S_Pre_Fetch;
+	
+	when S_LBU =>
+		cmd.AD_Y_sel <= AD_Y_immI;
+		cmd.AD_we <= '1';
+		state_d <= S_LBU1;
+	when S_LBU1 =>
+		-- acces mémoire--
+		cmd.ADDR_sel <= ADDR_from_ad;
+		cmd.mem_ce <= '1';
+		cmd.mem_we <= '0';
+		state_d <= S_LBU2;
+	when S_LBU2 =>
+		-- écriture dans le registre --
+		cmd.DATA_sel <= DATA_from_mem;
+		cmd.RF_we <= '1';
+		cmd.RF_SIGN_enable <= '0';
+		cmd.RF_size_sel <= RF_SIZE_byte;
+		state_d <= S_Pre_Fetch;
+
+	when S_LH =>
+		cmd.AD_Y_sel <= AD_Y_immI;
+		cmd.AD_we <= '1';
+		state_d <= S_LH1;
+	when S_LH1 =>
+		-- acces mémoire--
+		cmd.ADDR_sel <= ADDR_from_ad;
+		cmd.mem_ce <= '1';
+		cmd.mem_we <= '0';
+		state_d <= S_LH2;
+	when S_LH2 =>
+		-- écriture dans le registre --
+		cmd.DATA_sel <= DATA_from_mem;
+		cmd.RF_we <= '1';
+		cmd.RF_SIGN_enable <= '1';
+		cmd.RF_size_sel <= RF_SIZE_half;
+		state_d <= S_Pre_Fetch;
+
+	when S_LHU =>
+		cmd.AD_Y_sel <= AD_Y_immI;
+		cmd.AD_we <= '1';
+		state_d <= S_LHU1;
+	when S_LHU1 =>
+		-- acces mémoire--
+		cmd.ADDR_sel <= ADDR_from_ad;
+		cmd.mem_ce <= '1';
+		cmd.mem_we <= '0';
+		state_d <= S_LHU2;
+	when S_LHU2 =>
+		-- écriture dans le registre --
+		cmd.DATA_sel <= DATA_from_mem;
+		cmd.RF_we <= '1';
+		cmd.RF_SIGN_enable <= '0';
+		cmd.RF_size_sel <= RF_SIZE_half;
+		state_d <= S_Pre_Fetch;
+
+
 ---------- Instructions de sauvegarde en mémoire ----------
 	when S_SW =>
 		-- réalise l'addition --
@@ -310,6 +610,73 @@ cmd.cs.CSR_WRITE_mode <= UNDEFINED;
 		cmd.mem_ce <= '1';
 		cmd.mem_we <= '1';
 		state_d <= S_Pre_Fetch;
+	
+	when S_SUB =>
+		--rd <- rs1 - rs2
+		cmd.ALU_Y_sel <= ALU_Y_rf_rs2;
+		cmd.ALU_op <= ALU_minus;
+		cmd.RF_we <= '1';
+		cmd.DATA_sel <= DATA_from_alu;
+		cmd.ADDR_sel <= ADDR_from_pc;
+		cmd.mem_ce <= '1';
+		cmd.mem_we <= '0';
+		state_d <= S_fetch;
+	
+	when S_OR =>
+		cmd.ALU_Y_sel <= ALU_Y_rf_rs2;
+		cmd.LOGICAL_op <= LOGICAL_or;
+		cmd.DATA_sel <= DATA_from_logical;
+		cmd.RF_we <= '1';
+		cmd.ADDR_sel <= ADDR_from_pc;
+		cmd.mem_ce <= '1';
+        cmd.mem_we <= '0';
+		state_d <= S_fetch;
+	when S_ORI =>
+		cmd.ALU_Y_sel <= ALU_Y_immI;
+		cmd.LOGICAL_op <= LOGICAL_or;
+		cmd.DATA_sel <= DATA_from_logical;
+		cmd.RF_we <= '1';
+		cmd.ADDR_sel <= ADDR_from_pc;
+		cmd.mem_ce <= '1';
+		cmd.mem_we <= '0';
+		state_d <= S_fetch;	
+	when S_AND =>
+		cmd.ALU_Y_sel <= ALU_Y_rf_rs2;
+		cmd.LOGICAL_op <= LOGICAL_and;
+		cmd.DATA_sel <= DATA_from_logical;
+		cmd.RF_we <= '1';
+		cmd.ADDR_sel <= ADDR_from_pc;
+		cmd.mem_ce <= '1';
+        cmd.mem_we <= '0';
+		state_d <= S_fetch;
+	when S_ANDI =>
+		cmd.ALU_Y_sel <= ALU_Y_immI;
+		cmd.LOGICAL_op <= LOGICAL_and;
+		cmd.DATA_sel <= DATA_from_logical;
+		cmd.RF_we <= '1';
+		cmd.ADDR_sel <= ADDR_from_pc;
+		cmd.mem_ce <= '1';
+		cmd.mem_we <= '0';
+		state_d <= S_fetch;	
+	when S_XOR =>
+		cmd.ALU_Y_sel <= ALU_Y_rf_rs2;
+		cmd.LOGICAL_op <= LOGICAL_xor;
+		cmd.DATA_sel <= DATA_from_logical;
+		cmd.RF_we <= '1';
+		cmd.ADDR_sel <= ADDR_from_pc;
+		cmd.mem_ce <= '1';
+        cmd.mem_we <= '0';
+		state_d <= S_fetch;
+	when S_ANDI =>
+		cmd.ALU_Y_sel <= ALU_Y_immI;
+		cmd.LOGICAL_op <= LOGICAL_xor;
+		cmd.DATA_sel <= DATA_from_logical;
+		cmd.RF_we <= '1';
+		cmd.ADDR_sel <= ADDR_from_pc;
+		cmd.mem_ce <= '1';
+		cmd.mem_we <= '0';
+		state_d <= S_fetch;	
+
 
 ---------- Instructions d'accès aux CSR ----------
 
