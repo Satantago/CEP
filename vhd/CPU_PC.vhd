@@ -38,42 +38,42 @@ architecture RTL of CPU_PC is
         S_LW,
         S_LW1,
         S_LW2,
-		S_LB,
-		S_LB1,
-		S_LB2,
-		S_LBU,
-		S_LBU1,
-		S_LBU2,
-		S_LH,
-		S_LH1,
-		S_LH2,
-		S_LHU,
-		S_LHU1,
-		S_LHU2,
+	S_LB,
+	S_LB1,
+	S_LB2,
+	S_LBU,
+	S_LBU1,
+	S_LBU2,
+	S_LH,
+	S_LH1,
+	S_LH2,
+	S_LHU,
+	S_LHU1,
+	S_LHU2,
         S_SW,
         S_SW1,
         S_JAL,
-		S_JALR,
-		S_SUB,
-		S_OR,
-		S_ORI,
-		S_AND,
-		S_ANDI,
-		S_XOR,
-		S_XORI,
-		S_SLLI,
-		S_SRA,
-		S_SRAI,
-		S_SRL,
-		S_SRLI,
-		S_SLTI,
-		S_SLTIU,
-		S_SLTU,
-		S_BGE,
-		S_BGEU,
-		S_BLT,
-		S_BLTU,
-		S_BNE
+	S_JALR,
+	S_SUB,
+	S_OR,
+	S_ORI,
+	S_AND,
+	S_ANDI,
+	S_XOR,
+	S_XORI,
+	S_SLLI,
+	S_SRA,
+	S_SRAI,
+	S_SRL,
+	S_SRLI,
+	S_SLTI,
+	S_SLTIU,
+	S_SLTU,
+	S_BGE,
+	S_BGEU,
+	S_BLT,
+	S_BLTU,
+	S_BNE
     );
 
     signal state_d, state_q : State_type;
@@ -181,34 +181,34 @@ cmd.cs.CSR_WRITE_mode <= UNDEFINED;
 			state_d <= S_beq;
 		elsif status.IR(6 downto 0)="0100011" and status.IR(14 downto 12) = "010" then
 			cmd.TO_PC_Y_sel <= TO_PC_Y_cst_x04;
-		    cmd.PC_sel <= PC_from_pc;
+		    	cmd.PC_sel <= PC_from_pc;
 			cmd.PC_we <= '1';
-	    	state_d <= S_SW;
+	    		state_d <= S_SW;
 		elsif status.IR(6 downto 0)="0000011" and status.IR(14 downto 12) = "010" then
 			cmd.TO_PC_Y_sel <= TO_PC_Y_cst_x04;
-		    cmd.PC_sel <= PC_from_pc;
+		   	 cmd.PC_sel <= PC_from_pc;
 			cmd.PC_we <= '1';
-	    	state_d <= S_LW;
+	    		state_d <= S_LW;
 		elsif status.IR(6 downto 0)="0000011" and status.IR(14 downto 12) = "000" then
 			cmd.TO_PC_Y_sel <= TO_PC_Y_cst_x04;
-		    cmd.PC_sel <= PC_from_pc;
+		    	cmd.PC_sel <= PC_from_pc;
 			cmd.PC_we <= '1';
-	    	state_d <= S_LB;
+	    		state_d <= S_LB;
 		elsif status.IR(6 downto 0)="0000011" and status.IR(14 downto 12) = "100" then
 			cmd.TO_PC_Y_sel <= TO_PC_Y_cst_x04;
-		    cmd.PC_sel <= PC_from_pc;
+		    	cmd.PC_sel <= PC_from_pc;
 			cmd.PC_we <= '1';
-	    	state_d <= S_LBU;
+	    		state_d <= S_LBU;
 		elsif status.IR(6 downto 0)="0000011" and status.IR(14 downto 12) = "001" then
 			cmd.TO_PC_Y_sel <= TO_PC_Y_cst_x04;
-		    cmd.PC_sel <= PC_from_pc;
+		    	cmd.PC_sel <= PC_from_pc;
 			cmd.PC_we <= '1';
-	    	state_d <= S_LH;
+	    		state_d <= S_LH;
 		elsif status.IR(6 downto 0)="0000011" and status.IR(14 downto 12) = "101" then
 			cmd.TO_PC_Y_sel <= TO_PC_Y_cst_x04;
-		    cmd.PC_sel <= PC_from_pc;
+		    	cmd.PC_sel <= PC_from_pc;
 			cmd.PC_we <= '1';
-	    	state_d <= S_LHU;
+	    		state_d <= S_LHU;
 		
 		elsif status.IR(6 downto 0) = "0110011" and status.IR(14 downto 12) = "010" then
 			cmd.TO_PC_Y_sel <= TO_PC_Y_cst_x04;
@@ -217,19 +217,19 @@ cmd.cs.CSR_WRITE_mode <= UNDEFINED;
 			state_d <= S_SLT;
 		elsif status.IR(14 downto 12) = "010" and status.IR(6 downto 0) = "0010011" then
 			cmd.TO_PC_Y_sel <= TO_PC_Y_cst_x04;
-            cmd.PC_sel <= PC_from_pc;
-            cmd.PC_we <= '1';   
-            state_d <= S_SLTI;
+            		cmd.PC_sel <= PC_from_pc;
+            		cmd.PC_we <= '1';   
+            		state_d <= S_SLTI;
 		elsif status.IR(14 downto 12) = "011" and status.IR(6 downto 0) = "0010011" then
 			cmd.TO_PC_Y_sel <= TO_PC_Y_cst_x04;
-            cmd.PC_sel <= PC_from_pc;
-            cmd.PC_we <= '1';   
-            state_d <= S_SLTIU;
+            		cmd.PC_sel <= PC_from_pc;
+            		cmd.PC_we <= '1';   
+            		state_d <= S_SLTIU;
 		elsif status.IR(14 downto 12) = "010" and status.IR(6 downto 0) = "0110011" then
 			cmd.TO_PC_Y_sel <= TO_PC_Y_cst_x04;
-            cmd.PC_sel <= PC_from_pc;
-            cmd.PC_we <= '1';   
-            state_d <= S_SLTU;
+            		cmd.PC_sel <= PC_from_pc;
+            		cmd.PC_we <= '1';   
+            		state_d <= S_SLTU;
 		
 		elsif status.IR(6 downto 0) = "0110011" and status.IR(14 downto 12) = "001" then
 			cmd.TO_PC_Y_sel <= TO_PC_Y_cst_x04;
@@ -237,8 +237,6 @@ cmd.cs.CSR_WRITE_mode <= UNDEFINED;
 			cmd.PC_we <= '1';
 			state_d <= S_sll;
 
-		elsif status.IR(6 downto 0) = "0010111" then
-			state_d <= S_auipc;
 		elsif status.IR(31 downto 25) = "0100000" and status.IR(14 downto 12) = "000" and status.IR(6 downto 0) = "0110011" then
 			cmd.TO_PC_Y_sel <= TO_PC_Y_cst_x04;
 			cmd.PC_sel <= PC_from_pc;
@@ -276,50 +274,50 @@ cmd.cs.CSR_WRITE_mode <= UNDEFINED;
 			state_d <= S_XORI;
 		elsif status.IR(31 downto 25) = "0000000" and status.IR(14 downto 12) = "001" and status.IR(6 downto 0) = "0010011" then
 			cmd.TO_PC_Y_sel <= TO_PC_Y_cst_x04;
-            cmd.PC_sel <= PC_from_pc;
-            cmd.PC_we <= '1';
-            state_d <= S_SLLI;
+           		cmd.PC_sel <= PC_from_pc;
+            		cmd.PC_we <= '1';
+            		state_d <= S_SLLI;
 		elsif status.IR(31 downto 25) = "0100000" and status.IR(14 downto 12) = "101" and status.IR(6 downto 0) = "0110011" then
 			cmd.TO_PC_Y_sel <= TO_PC_Y_cst_x04;
-            cmd.PC_sel <= PC_from_pc;
-            cmd.PC_we <= '1';
-            state_d <= S_SRA;
+            		cmd.PC_sel <= PC_from_pc;
+            		cmd.PC_we <= '1';
+            		state_d <= S_SRA;
 		elsif status.IR(31 downto 25) = "0100000" and status.IR(14 downto 12) = "101" and status.IR(6 downto 0) = "0010011" then
 			cmd.TO_PC_Y_sel <= TO_PC_Y_cst_x04;
-            cmd.PC_sel <= PC_from_pc;
-            cmd.PC_we <= '1';
-            state_d <= S_SRAI;
+            		cmd.PC_sel <= PC_from_pc;
+            		cmd.PC_we <= '1';
+            		state_d <= S_SRAI;
 		elsif status.IR(31 downto 25) = "0000000" and status.IR(14 downto 12) = "101" and status.IR(6 downto 0) = "0110011" then
 			cmd.TO_PC_Y_sel <= TO_PC_Y_cst_x04;
-            cmd.PC_sel <= PC_from_pc;
-            cmd.PC_we <= '1';
-            state_d <= S_SRL;
+            		cmd.PC_sel <= PC_from_pc;
+            		cmd.PC_we <= '1';
+            		state_d <= S_SRL;
 		elsif status.IR(31 downto 25) = "0000000" and status.IR(14 downto 12) = "101" and status.IR(6 downto 0) = "0010011" then
 			cmd.TO_PC_Y_sel <= TO_PC_Y_cst_x04;
-            cmd.PC_sel <= PC_from_pc;
-            cmd.PC_we <= '1';
-            state_d <= S_SRLI;
+            		cmd.PC_sel <= PC_from_pc;
+            		cmd.PC_we <= '1';
+            		state_d <= S_SRLI;
 		elsif status.IR(6 downto 0) = "0110011" and status.IR(31 downto 25) = "0000000" and status.IR(14 downto 12) = "000" then
 			cmd.TO_PC_Y_sel <= TO_PC_Y_cst_x04;
 			cmd.PC_sel <= PC_from_pc;
 			cmd.PC_we <= '1';
 			state_d <= S_ADD;
-		
-		elsif status.IR(6 downto 0) = "0110111" then
-		    cmd.TO_PC_Y_sel <= TO_PC_Y_cst_x04;
-		    cmd.PC_sel <= PC_from_pc;
-		    cmd.PC_we <= '1';
-		    state_d <= S_LUI;
-
 		elsif status.IR(6 downto 0) = "1100111" and status.IR(14 downto 12) = "000" then
 			state_d <= S_JALR ;
+		elsif status.IR(6 downto 0) = "0110111" then
+		    	cmd.TO_PC_Y_sel <= TO_PC_Y_cst_x04;
+		    	cmd.PC_sel <= PC_from_pc;
+		    	cmd.PC_we <= '1';
+		    	state_d <= S_LUI;
 		elsif status.IR(6 downto 0) = "1101111" then
 			state_d <= S_JAL ;
 		elsif status.IR(6 downto 0) = "0010011" then
-		    cmd.TO_PC_Y_sel <= TO_PC_Y_cst_x04;
-		    cmd.PC_sel <= PC_from_pc;
-		    cmd.PC_we <= '1';
-		    state_d <= S_ADDI;
+		    	cmd.TO_PC_Y_sel <= TO_PC_Y_cst_x04;
+		    	cmd.PC_sel <= PC_from_pc;
+		    	cmd.PC_we <= '1';
+		    	state_d <= S_ADDI;
+		elsif status.IR(6 downto 0) = "0010111" then
+			state_d <= S_auipc;
 		
 		else
 		    state_d <= S_Error; -- Pour d ́etecter les rat ́es du d ́ecodage
@@ -485,7 +483,7 @@ cmd.cs.CSR_WRITE_mode <= UNDEFINED;
 		cmd.ALU_Y_sel <= ALU_Y_immI;
 		cmd.DATA_sel <= DATA_from_slt;
 		cmd.RF_we <= '1';
-		cmd.RF_SIGN_enable <= '0';
+		-- cmd.RF_SIGN_enable <= '0';
 		-- lecture mem[PC]
 		cmd.ADDR_sel <= ADDR_from_pc;
 		cmd.mem_ce <= '1';
@@ -496,7 +494,7 @@ cmd.cs.CSR_WRITE_mode <= UNDEFINED;
 		cmd.ALU_Y_sel <= ALU_Y_rf_rs2;
 		cmd.DATA_sel <= DATA_from_slt;
 		cmd.RF_we <= '1';
-		cmd.RF_SIGN_enable <= '0';
+		-- cmd.RF_SIGN_enable <= '0';
 		-- lecture mem[PC]
 		cmd.ADDR_sel <= ADDR_from_pc;
 		cmd.mem_ce <= '1';
@@ -518,7 +516,7 @@ cmd.cs.CSR_WRITE_mode <= UNDEFINED;
 		cmd.PC_X_sel <= PC_X_pc;
 	   	cmd.RF_we <= '1';
 		cmd.ALU_Y_sel <= ALU_Y_immI ;
-        cmd.AD_Y_sel  <= AD_Y_immI;
+        	cmd.AD_Y_sel  <= AD_Y_immI;
 	   	cmd.PC_sel <= PC_from_alu;
 	   	cmd.PC_we <= '1';
 	   	state_d <= S_Pre_Fetch;
