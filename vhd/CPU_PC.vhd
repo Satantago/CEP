@@ -164,6 +164,16 @@ cmd.cs.CSR_WRITE_mode <= UNDEFINED;
 	   	-- et ne pas le faire juste pour les branchements et auipc
 		if status.IR(6 downto 0) = "1100011" and status.IR(14 downto 12) = "000" then
 			state_d <= S_beq;
+		elsif status.IR(6 downto 0) = "1100011" and status.IR(14 downto 12) = "101" then
+			state_d <= S_beq;
+		elsif status.IR(6 downto 0) = "1100011" and status.IR(14 downto 12) = "111" then
+			state_d <= S_beq;
+		elsif status.IR(6 downto 0) = "1100011" and status.IR(14 downto 12) = "100" then
+			state_d <= S_beq;
+		elsif status.IR(6 downto 0) = "1100011" and status.IR(14 downto 12) = "110" then
+			state_d <= S_beq;
+		elsif status.IR(6 downto 0) = "1100011" and status.IR(14 downto 12) = "001" then
+			state_d <= S_beq;
 		elsif status.IR(6 downto 0)="0100011" and status.IR(14 downto 12) = "010" then
 			cmd.TO_PC_Y_sel <= TO_PC_Y_cst_x04;
 		    cmd.PC_sel <= PC_from_pc;
