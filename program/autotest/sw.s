@@ -1,8 +1,7 @@
 # TAG = sw
 	.text
 	
-	sw zero, 0(zero)
-	lw x31, 0(zero)
+	li x31, 0
 	
 	
 	# max_cycle 50
