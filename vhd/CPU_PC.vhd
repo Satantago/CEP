@@ -470,6 +470,7 @@ cmd.cs.CSR_WRITE_mode <= UNDEFINED;
 		cmd.ALU_Y_sel <= ALU_Y_immI;
 		cmd.DATA_sel <= DATA_from_slt;
 		cmd.RF_we <= '1';
+		cmd.RF_SIGN_enable <= '0';
 		-- lecture mem[PC]
 		cmd.ADDR_sel <= ADDR_from_pc;
 		cmd.mem_ce <= '1';
@@ -480,6 +481,7 @@ cmd.cs.CSR_WRITE_mode <= UNDEFINED;
 		cmd.ALU_Y_sel <= ALU_Y_rf_rs2;
 		cmd.DATA_sel <= DATA_from_slt;
 		cmd.RF_we <= '1';
+		cmd.RF_SIGN_enable <= '0';
 		-- lecture mem[PC]
 		cmd.ADDR_sel <= ADDR_from_pc;
 		cmd.mem_ce <= '1';
