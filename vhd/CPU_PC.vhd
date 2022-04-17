@@ -53,6 +53,10 @@ architecture RTL of CPU_PC is
         S_SW,
         S_SW1,
         S_JAL,
+	S_SB,
+	S_SB1,
+	S_SH,
+	S_SH1,
 	S_JALR,
 	S_SUB,
 	S_OR,
@@ -181,9 +185,19 @@ cmd.cs.CSR_WRITE_mode <= UNDEFINED;
 			state_d <= S_beq;
 		elsif status.IR(6 downto 0)="0100011" and status.IR(14 downto 12) = "010" then
 			cmd.TO_PC_Y_sel <= TO_PC_Y_cst_x04;
-		    	cmd.PC_sel <= PC_from_pc;
+		    cmd.PC_sel <= PC_from_pc;
 			cmd.PC_we <= '1';
-	    		state_d <= S_SW;
+	    	state_d <= S_SW;
+		elsif status.IR(6 downto 0)="0100011" and status.IR(14 downto 12) = "000" then
+            cmd.TO_PC_Y_sel <= TO_PC_Y_cst_x04;
+            cmd.PC_sel <= PC_from_pc;
+            cmd.PC_we <= '1';
+            state_d <= S_SB;
+         elsif status.IR(6 downto 0)="0100011" and status.IR(14 downto 12) = "001" then
+            cmd.TO_PC_Y_sel <= TO_PC_Y_cst_x04;
+            cmd.PC_sel <= PC_from_pc;
+            cmd.PC_we <= '1';
+            state_d <= S_SH;
 		elsif status.IR(6 downto 0)="0000011" and status.IR(14 downto 12) = "010" then
 			cmd.TO_PC_Y_sel <= TO_PC_Y_cst_x04;
 		   	 cmd.PC_sel <= PC_from_pc;
@@ -625,6 +639,28 @@ cmd.cs.CSR_WRITE_mode <= UNDEFINED;
 		cmd.mem_ce <= '1';
 		cmd.mem_we <= '1';
 		state_d <= S_Pre_Fetch;
+	
+	when S_SB =>
+		cmd.AD_Y_sel <= AD_Y_immS;
+		cmd.AD_we <= '1';
+		state_d <= S_SB1;
+	when S_SB1 =>
+		cmd.ADDR_sel <= ADDR_from_ad;
+		cmd.mem_ce <= '1';
+		cmd.mem_we <= '1';
+		cmd.RF_size_sel <= RF_SIZE_byte;
+		state_d <= S_Pre_Fetch;		
+
+	when S_SH =>
+		cmd.AD_Y_sel <= AD_Y_immS;
+		cmd.AD_we <= '1';
+		state_d <= S_SH1;
+	when S_SH1 =>
+		cmd.ADDR_sel <= ADDR_from_ad;
+		cmd.mem_ce <= '1';
+		cmd.mem_we <= '1';
+		cmd.RF_size_sel <= RF_SIZE_half;
+		state_d <= S_Pre_Fetch;	
 	
 	when S_SUB =>
 		--rd <- rs1 - rs2
