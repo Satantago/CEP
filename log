@@ -2,7 +2,7 @@ INFO: [XSIM 43-3496] Using init file passed via -initfile option "/bigsoft/Xilin
 Vivado Simulator 2019.1
 Copyright 1986-1999, 2001-2019 Xilinx, Inc. All Rights Reserved.
 Running: /bigsoft/Xilinx/Vivado/2019.1/bin/unwrapped/lnx64.o/xelab tb_autotest -cc gcc -initfile=/bigsoft/Xilinx/Vivado/2019.1/data/xsim/ip/xsim_ip.ini -L xpm -nolog -debug typical -generic_top mutant=0 
-Multi-threading is on. Using 2 slave threads.
+Multi-threading is on. Using 4 slave threads.
 Starting static elaboration
 Completed static elaboration
 Starting simulation data flow analysis
@@ -34,10 +34,10 @@ Built simulation snapshot work.tb_autotest
     ** Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 
 source xsim.dir/work.tb_autotest/xsim_script.tcl
-# xsim {work.tb_autotest} -wdb {trace.wdb} -autoloadwcfg -tclbatch {/user/8/.base/sekkala/home/projet/errazkim_sekkala/config/autotest.xsim.tcl}
+# xsim {work.tb_autotest} -wdb {trace.wdb} -autoloadwcfg -tclbatch {/user/6/.base/errazkim/home/CEP/errazkim_sekkala/config/autotest.xsim.tcl}
 Vivado Simulator 2019.1
 Time resolution is 1 ps
-source /user/8/.base/sekkala/home/projet/errazkim_sekkala/config/autotest.xsim.tcl
+source /user/6/.base/errazkim/home/CEP/errazkim_sekkala/config/autotest.xsim.tcl
 ## if {[info exists ::env(TESTS)]} {
 ## 	set string_test $env(TESTS)
 ## } else {
@@ -45,9 +45,9 @@ source /user/8/.base/sekkala/home/projet/errazkim_sekkala/config/autotest.xsim.t
 ## }
 ## set tests [regexp -all -inline -- {\S+} $string_test]
 ## puts $string_test
- addi  add  auipc  BEQ  JAL  lui  lw  rebouclage  sll  slt  sub  sw
+ addi  add  andi  and  auipc  BEQ  bge  bgeu  blt  bltu  bne  jalr  JAL  lb  lbu  lh  lhu  lui  lw  ori  or  rebouclage  slli  sll  slti  sltiu  slt  sltu  srai  sra  srli  srl  sub  sw  xori  xor
 ## puts $tests
-addi add auipc BEQ JAL lui lw rebouclage sll slt sub sw
+addi add andi and auipc BEQ bge bgeu blt bltu bne jalr JAL lb lbu lh lhu lui lw ori or rebouclage slli sll slti sltiu slt sltu srai sra srli srl sub sw xori xor
 ## foreach test $tests {
 ## 	put "Preparing test: ${test}"
 ## 	file delete test_default.out test_default.irq test_default.setup test_default.mem
@@ -66,286 +66,806 @@ Preparing test: addi
 Running test: addi
 INFO: [Simtcl 6-17] Simulation restarted
 Note: @ 00000400 = 1024
-Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
 Note: memory[1024] = 01E00513
-Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
 Note: memory[1025] = 00150F93
-Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
 Note: memory[1026] = 01450F93
-Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
 Note: memory[1027] = 01750F93
-Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
 Note: memory[1028] = FFFFFFFF
-Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
 
 Note: pout expect   : 0x0000001F  get : 0x0000001F
-Time: 90 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+Time: 90 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
 
 Note: pout expect   : 0x00000032  get : 0x00000032
-Time: 120 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+Time: 120 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
 
 Note: pout expect   : 0x00000035  get : 0x00000035
-Time: 150 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+Time: 150 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
 Note: PASSED 
-Time: 150 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+Time: 150 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
 Failure: Assertion violation
-Time: 150 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/tb_autotest.vhd
-$finish called at time : 150 ns : File "/user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/tb_autotest.vhd" Line 203
+Time: 150 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+$finish called at time : 150 ns : File "/user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd" Line 203
 Preparing test: add
 Running test: add
 INFO: [Simtcl 6-17] Simulation restarted
 Note: @ 00000400 = 1024
-Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
 Note: memory[1024] = 01E00513
-Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
 Note: memory[1025] = 02800593
-Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
 Note: memory[1026] = 01900613
-Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
 Note: memory[1027] = 00B50FB3
-Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
 Note: memory[1028] = 00C50FB3
-Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
 Note: memory[1029] = 00C58FB3
-Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
 Note: memory[1030] = FFFFFFFF
-Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
 
 Note: pout expect   : 0x00000046  get : 0x00000046
-Time: 150 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+Time: 150 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
 
 Note: pout expect   : 0x00000037  get : 0x00000037
-Time: 180 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+Time: 180 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
 
 Note: pout expect   : 0x00000041  get : 0x00000041
-Time: 210 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+Time: 210 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
 Note: PASSED 
-Time: 210 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+Time: 210 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
 Failure: Assertion violation
-Time: 210 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/tb_autotest.vhd
-$finish called at time : 210 ns : File "/user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/tb_autotest.vhd" Line 203
+Time: 210 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+$finish called at time : 210 ns : File "/user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd" Line 203
+Preparing test: andi
+Running test: andi
+INFO: [Simtcl 6-17] Simulation restarted
+Note: @ 00000400 = 1024
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1024] = 00000F93
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1025] = FFFFFFFF
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+
+Note: pout expect   : 0x00000000  get : 0x00000000
+Time: 60 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+Note: PASSED 
+Time: 60 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+Failure: Assertion violation
+Time: 60 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+$finish called at time : 60 ns : File "/user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd" Line 203
+Preparing test: and
+Running test: and
+INFO: [Simtcl 6-17] Simulation restarted
+Note: @ 00000400 = 1024
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1024] = 01E00513
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1025] = 02800593
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1026] = 01900613
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1027] = 00B57FB3
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1028] = 00C57FB3
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1029] = 00C5FFB3
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1030] = FFFFFFFF
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+
+Note: pout expect   : 0x00000008  get : 0x00000008
+Time: 150 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+
+Note: pout expect   : 0x00000018  get : 0x00000018
+Time: 180 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+
+Note: pout expect   : 0x00000008  get : 0x00000008
+Time: 210 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+Note: PASSED 
+Time: 210 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+Failure: Assertion violation
+Time: 210 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+$finish called at time : 210 ns : File "/user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd" Line 203
 Preparing test: auipc
 Running test: auipc
 INFO: [Simtcl 6-17] Simulation restarted
 Note: @ 00000400 = 1024
-Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
 Note: memory[1024] = 10000F97
-Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
 Note: memory[1025] = 01010F97
-Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
 Note: memory[1026] = FFFFFFFF
-Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
 
 Note: pout expect   : 0x10001000  get : 0x10001000
-Time: 60 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+Time: 60 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
 
 Note: pout expect   : 0x01011004  get : 0x01011004
-Time: 100 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+Time: 100 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
 Note: PASSED 
-Time: 100 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+Time: 100 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
 Failure: Assertion violation
-Time: 100 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/tb_autotest.vhd
-$finish called at time : 100 ns : File "/user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/tb_autotest.vhd" Line 203
+Time: 100 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+$finish called at time : 100 ns : File "/user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd" Line 203
 Preparing test: BEQ
 Running test: BEQ
 INFO: [Simtcl 6-17] Simulation restarted
 Note: @ 00000400 = 1024
-Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
 Note: memory[1024] = 00F00513
-Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
 Note: memory[1025] = 00F00593
-Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
 Note: memory[1026] = 00B50263
-Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
 Note: memory[1027] = 00400F93
-Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
 Note: memory[1028] = FFFFFFFF
-Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
 
 Note: pout expect   : 0x00000004  get : 0x00000004
-Time: 160 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+Time: 160 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
 Note: PASSED 
-Time: 160 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+Time: 160 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
 Failure: Assertion violation
-Time: 160 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/tb_autotest.vhd
-$finish called at time : 160 ns : File "/user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/tb_autotest.vhd" Line 203
+Time: 160 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+$finish called at time : 160 ns : File "/user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd" Line 203
+Preparing test: bge
+Running test: bge
+INFO: [Simtcl 6-17] Simulation restarted
+Note: @ 00000400 = 1024
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1024] = 00F00513
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1025] = 00F00593
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1026] = 00B55263
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1027] = 00400F93
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1028] = 01400A13
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1029] = 00AA5263
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1030] = 00500F93
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1031] = FFFFFFFF
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+
+Note: pout expect   : 0x00000004  get : 0x00000004
+Time: 160 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+
+Note: pout expect   : 0x00000005  get : 0x00000005
+Time: 260 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+Note: PASSED 
+Time: 260 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+Failure: Assertion violation
+Time: 260 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+$finish called at time : 260 ns : File "/user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd" Line 203
+Preparing test: bgeu
+Running test: bgeu
+INFO: [Simtcl 6-17] Simulation restarted
+Note: @ 00000400 = 1024
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1024] = 00F00513
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1025] = 00F00593
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1026] = 00B57263
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1027] = 00400F93
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1028] = 01400A13
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1029] = 00AA7263
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1030] = 00500F93
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1031] = FFFFFFFF
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+
+Note: pout expect   : 0x00000004  get : 0x00000004
+Time: 160 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+
+Note: pout expect   : 0x00000005  get : 0x00000005
+Time: 260 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+Note: PASSED 
+Time: 260 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+Failure: Assertion violation
+Time: 260 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+$finish called at time : 260 ns : File "/user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd" Line 203
+Preparing test: blt
+Running test: blt
+INFO: [Simtcl 6-17] Simulation restarted
+Note: @ 00000400 = 1024
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1024] = 00F00513
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1025] = 00F00593
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1026] = 00B54263
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1027] = 00400F93
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1028] = 01400A13
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1029] = 01454263
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1030] = 00500F93
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1031] = FFFFFFFF
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+
+Note: pout expect   : 0x00000004  get : 0x00000004
+Time: 160 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+
+Note: pout expect   : 0x00000005  get : 0x00000005
+Time: 260 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+Note: PASSED 
+Time: 260 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+Failure: Assertion violation
+Time: 260 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+$finish called at time : 260 ns : File "/user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd" Line 203
+Preparing test: bltu
+Running test: bltu
+INFO: [Simtcl 6-17] Simulation restarted
+Note: @ 00000400 = 1024
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1024] = 00F00513
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1025] = 00F00593
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1026] = 00B56263
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1027] = 00400F93
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1028] = 01400A13
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1029] = 01456263
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1030] = 00500F93
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1031] = FFFFFFFF
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+
+Note: pout expect   : 0x00000004  get : 0x00000004
+Time: 160 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+
+Note: pout expect   : 0x00000005  get : 0x00000005
+Time: 260 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+Note: PASSED 
+Time: 260 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+Failure: Assertion violation
+Time: 260 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+$finish called at time : 260 ns : File "/user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd" Line 203
+Preparing test: bne
+Running test: bne
+INFO: [Simtcl 6-17] Simulation restarted
+Note: @ 00000400 = 1024
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1024] = 00F00513
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1025] = 07A00593
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1026] = 00B51263
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1027] = 00400F93
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1028] = FFFFFFFF
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+
+Note: pout expect   : 0x00000004  get : 0x00000004
+Time: 160 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+Note: PASSED 
+Time: 160 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+Failure: Assertion violation
+Time: 160 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+$finish called at time : 160 ns : File "/user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd" Line 203
+Preparing test: jalr
+Running test: jalr
+INFO: [Simtcl 6-17] Simulation restarted
+Note: @ 00000400 = 1024
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1024] = 00000F93
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1025] = FFFFFFFF
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+
+Note: pout expect   : 0x00000000  get : 0x00000000
+Time: 60 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+Note: PASSED 
+Time: 60 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+Failure: Assertion violation
+Time: 60 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+$finish called at time : 60 ns : File "/user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd" Line 203
 Preparing test: JAL
 Running test: JAL
 INFO: [Simtcl 6-17] Simulation restarted
 Note: @ 00000400 = 1024
-Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
 Note: memory[1024] = 004001EF
-Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
 Note: memory[1025] = 00500F93
-Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
 Note: memory[1026] = FFFFFFFF
-Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
 
 Note: pout expect   : 0x00000005  get : 0x00000005
-Time: 100 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+Time: 100 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
 Note: PASSED 
-Time: 100 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+Time: 100 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
 Failure: Assertion violation
-Time: 100 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/tb_autotest.vhd
-$finish called at time : 100 ns : File "/user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/tb_autotest.vhd" Line 203
+Time: 100 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+$finish called at time : 100 ns : File "/user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd" Line 203
+Preparing test: lb
+Running test: lb
+INFO: [Simtcl 6-17] Simulation restarted
+Note: @ 00000400 = 1024
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1024] = 00001737
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1025] = 00070F83
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1026] = FFFFFFFF
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+
+Note: pout expect   : 0x00000037  get : 0x00000037
+Time: 110 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+Note: PASSED 
+Time: 110 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+Failure: Assertion violation
+Time: 110 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+$finish called at time : 110 ns : File "/user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd" Line 203
+Preparing test: lbu
+Running test: lbu
+INFO: [Simtcl 6-17] Simulation restarted
+Note: @ 00000400 = 1024
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1024] = 00001737
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1025] = 00074F83
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1026] = FFFFFFFF
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+
+Note: pout expect   : 0x00000037  get : 0x00000037
+Time: 110 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+Note: PASSED 
+Time: 110 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+Failure: Assertion violation
+Time: 110 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+$finish called at time : 110 ns : File "/user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd" Line 203
+Preparing test: lh
+Running test: lh
+INFO: [Simtcl 6-17] Simulation restarted
+Note: @ 00000400 = 1024
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1024] = 00000F93
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1025] = FFFFFFFF
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+
+Note: pout expect   : 0x00000000  get : 0x00000000
+Time: 60 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+Note: PASSED 
+Time: 60 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+Failure: Assertion violation
+Time: 60 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+$finish called at time : 60 ns : File "/user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd" Line 203
+Preparing test: lhu
+Running test: lhu
+INFO: [Simtcl 6-17] Simulation restarted
+Note: @ 00000400 = 1024
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1024] = 00000F93
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1025] = FFFFFFFF
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+
+Note: pout expect   : 0x00000000  get : 0x00000000
+Time: 60 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+Note: PASSED 
+Time: 60 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+Failure: Assertion violation
+Time: 60 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+$finish called at time : 60 ns : File "/user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd" Line 203
 Preparing test: lui
 Running test: lui
 INFO: [Simtcl 6-17] Simulation restarted
 Note: @ 00000400 = 1024
-Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
 Note: memory[1024] = 00000FB7
-Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
 Note: memory[1025] = FFFFFFB7
-Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
 Note: memory[1026] = 12345FB7
-Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
 Note: memory[1027] = FFFFFFFF
-Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
 
 Note: pout expect   : 0x00000000  get : 0x00000000
-Time: 60 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+Time: 60 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
 
 Note: pout expect   : 0xFFFFF000  get : 0xFFFFF000
-Time: 90 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+Time: 90 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
 
 Note: pout expect   : 0x12345000  get : 0x12345000
-Time: 120 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+Time: 120 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
 Note: PASSED 
-Time: 120 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+Time: 120 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
 Failure: Assertion violation
-Time: 120 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/tb_autotest.vhd
-$finish called at time : 120 ns : File "/user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/tb_autotest.vhd" Line 203
+Time: 120 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+$finish called at time : 120 ns : File "/user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd" Line 203
 Preparing test: lw
 Running test: lw
 INFO: [Simtcl 6-17] Simulation restarted
 Note: @ 00000400 = 1024
-Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
 Note: memory[1024] = 000065B7
-Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
 Note: memory[1025] = 000017B7
-Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
 Note: memory[1026] = 0007AF83
-Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
 Note: memory[1027] = FFFFFFFF
-Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
 
 Note: pout expect   : 0x000065B7  get : 0x000065B7
-Time: 140 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+Time: 140 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
 Note: PASSED 
-Time: 140 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+Time: 140 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
 Failure: Assertion violation
-Time: 140 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/tb_autotest.vhd
-$finish called at time : 140 ns : File "/user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/tb_autotest.vhd" Line 203
+Time: 140 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+$finish called at time : 140 ns : File "/user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd" Line 203
+Preparing test: ori
+Running test: ori
+INFO: [Simtcl 6-17] Simulation restarted
+Note: @ 00000400 = 1024
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1024] = 00000F93
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1025] = FFFFFFFF
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+
+Note: pout expect   : 0x00000000  get : 0x00000000
+Time: 60 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+Note: PASSED 
+Time: 60 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+Failure: Assertion violation
+Time: 60 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+$finish called at time : 60 ns : File "/user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd" Line 203
+Preparing test: or
+Running test: or
+INFO: [Simtcl 6-17] Simulation restarted
+Note: @ 00000400 = 1024
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1024] = 00000F93
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1025] = FFFFFFFF
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+
+Note: pout expect   : 0x00000000  get : 0x00000000
+Time: 60 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+Note: PASSED 
+Time: 60 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+Failure: Assertion violation
+Time: 60 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+$finish called at time : 60 ns : File "/user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd" Line 203
 Preparing test: rebouclage
 Running test: rebouclage
 INFO: [Simtcl 6-17] Simulation restarted
 Note: @ 00000400 = 1024
-Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
 Note: memory[1024] = FFFFFFB7
-Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
 Note: memory[1025] = FFFFFFFF
-Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
 Note: memory[1026] = 12345FB7
-Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
 Note: memory[1027] = FFFFFFFF
-Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
 
 Note: pout expect   : 0xFFFFF000  get : 0xFFFFF000
-Time: 60 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+Time: 60 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
 
 Note: pout expect   : 0xFFFFF000  get : 0xFFFFF000
-Time: 140 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+Time: 140 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
 Note: PASSED 
-Time: 140 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+Time: 140 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
 Failure: Assertion violation
-Time: 140 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/tb_autotest.vhd
-$finish called at time : 140 ns : File "/user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/tb_autotest.vhd" Line 203
+Time: 140 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+$finish called at time : 140 ns : File "/user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd" Line 203
+Preparing test: slli
+Running test: slli
+INFO: [Simtcl 6-17] Simulation restarted
+Note: @ 00000400 = 1024
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1024] = 00000F93
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1025] = FFFFFFFF
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+
+Note: pout expect   : 0x00000000  get : 0x00000000
+Time: 60 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+Note: PASSED 
+Time: 60 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+Failure: Assertion violation
+Time: 60 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+$finish called at time : 60 ns : File "/user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd" Line 203
 Preparing test: sll
 Running test: sll
 INFO: [Simtcl 6-17] Simulation restarted
 Note: @ 00000400 = 1024
-Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
 Note: memory[1024] = 00200513
-Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
 Note: memory[1025] = 00100613
-Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
 Note: memory[1026] = 00C51FB3
-Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
 Note: memory[1027] = FFFFFFFF
-Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
 
 Note: pout expect   : 0x00000004  get : 0x00000004
-Time: 120 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+Time: 120 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
 Note: PASSED 
-Time: 120 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+Time: 120 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
 Failure: Assertion violation
-Time: 120 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/tb_autotest.vhd
-$finish called at time : 120 ns : File "/user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/tb_autotest.vhd" Line 203
+Time: 120 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+$finish called at time : 120 ns : File "/user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd" Line 203
+Preparing test: slti
+Running test: slti
+INFO: [Simtcl 6-17] Simulation restarted
+Note: @ 00000400 = 1024
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1024] = 00000F93
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1025] = FFFFFFFF
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+
+Note: pout expect   : 0x00000000  get : 0x00000000
+Time: 60 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+Note: PASSED 
+Time: 60 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+Failure: Assertion violation
+Time: 60 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+$finish called at time : 60 ns : File "/user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd" Line 203
+Preparing test: sltiu
+Running test: sltiu
+INFO: [Simtcl 6-17] Simulation restarted
+Note: @ 00000400 = 1024
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1024] = 00000F93
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1025] = FFFFFFFF
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+
+Note: pout expect   : 0x00000000  get : 0x00000000
+Time: 60 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+Note: PASSED 
+Time: 60 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+Failure: Assertion violation
+Time: 60 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+$finish called at time : 60 ns : File "/user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd" Line 203
 Preparing test: slt
 Running test: slt
 INFO: [Simtcl 6-17] Simulation restarted
 Note: @ 00000400 = 1024
-Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
 Note: memory[1024] = 00400513
-Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
 Note: memory[1025] = 00500593
-Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
 Note: memory[1026] = 00B52FB3
-Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
 Note: memory[1027] = FFFFFFFF
-Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
 
 Note: pout expect   : 0x00000001  get : 0x00000001
-Time: 120 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+Time: 120 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
 Note: PASSED 
-Time: 120 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+Time: 120 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
 Failure: Assertion violation
-Time: 120 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/tb_autotest.vhd
-$finish called at time : 120 ns : File "/user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/tb_autotest.vhd" Line 203
+Time: 120 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+$finish called at time : 120 ns : File "/user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd" Line 203
+Preparing test: sltu
+Running test: sltu
+INFO: [Simtcl 6-17] Simulation restarted
+Note: @ 00000400 = 1024
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1024] = 00000F93
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1025] = FFFFFFFF
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+
+Note: pout expect   : 0x00000000  get : 0x00000000
+Time: 60 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+Note: PASSED 
+Time: 60 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+Failure: Assertion violation
+Time: 60 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+$finish called at time : 60 ns : File "/user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd" Line 203
+Preparing test: srai
+Running test: srai
+INFO: [Simtcl 6-17] Simulation restarted
+Note: @ 00000400 = 1024
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1024] = 00000F93
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1025] = FFFFFFFF
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+
+Note: pout expect   : 0x00000000  get : 0x00000000
+Time: 60 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+Note: PASSED 
+Time: 60 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+Failure: Assertion violation
+Time: 60 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+$finish called at time : 60 ns : File "/user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd" Line 203
+Preparing test: sra
+Running test: sra
+INFO: [Simtcl 6-17] Simulation restarted
+Note: @ 00000400 = 1024
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1024] = 00000F93
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1025] = FFFFFFFF
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+
+Note: pout expect   : 0x00000000  get : 0x00000000
+Time: 60 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+Note: PASSED 
+Time: 60 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+Failure: Assertion violation
+Time: 60 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+$finish called at time : 60 ns : File "/user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd" Line 203
+Preparing test: srli
+Running test: srli
+INFO: [Simtcl 6-17] Simulation restarted
+Note: @ 00000400 = 1024
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1024] = 00000F93
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1025] = FFFFFFFF
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+
+Note: pout expect   : 0x00000000  get : 0x00000000
+Time: 60 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+Note: PASSED 
+Time: 60 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+Failure: Assertion violation
+Time: 60 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+$finish called at time : 60 ns : File "/user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd" Line 203
+Preparing test: srl
+Running test: srl
+INFO: [Simtcl 6-17] Simulation restarted
+Note: @ 00000400 = 1024
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1024] = 00000F93
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1025] = FFFFFFFF
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+
+Note: pout expect   : 0x00000000  get : 0x00000000
+Time: 60 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+Note: PASSED 
+Time: 60 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+Failure: Assertion violation
+Time: 60 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+$finish called at time : 60 ns : File "/user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd" Line 203
 Preparing test: sub
 Running test: sub
 INFO: [Simtcl 6-17] Simulation restarted
 Note: @ 00000400 = 1024
-Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
 Note: memory[1024] = 00500293
-Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
 Note: memory[1025] = 00400513
-Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
 Note: memory[1026] = 00900593
-Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
 Note: memory[1027] = 40A28FB3
-Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
 Note: memory[1028] = 40A58FB3
-Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
 Note: memory[1029] = FFFFFFFF
-Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
 
 Note: pout expect   : 0x00000001  get : 0x00000001
-Time: 150 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+Time: 150 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
 
 Note: pout expect   : 0x00000005  get : 0x00000005
-Time: 180 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+Time: 180 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
 Note: PASSED 
-Time: 180 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+Time: 180 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
 Failure: Assertion violation
-Time: 180 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/tb_autotest.vhd
-$finish called at time : 180 ns : File "/user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/tb_autotest.vhd" Line 203
+Time: 180 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+$finish called at time : 180 ns : File "/user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd" Line 203
 Preparing test: sw
 Running test: sw
 INFO: [Simtcl 6-17] Simulation restarted
 Note: @ 00000400 = 1024
-Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
-Note: memory[1024] = 00000F93
-Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
-Note: memory[1025] = FFFFFFFF
-Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1024] = 45745125
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1025] = 00000F17
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1026] = FFCF0F13
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1027] = 00600793
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1028] = 00FF2023
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1029] = 000F2F83
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1030] = FFFFFFFF
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+
+Failure: Timeout : 50 cycles
+Time: 500 ns  Iteration: 0  Process: /tb_autotest/line__66  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+$finish called at time : 500 ns : File "/user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/txt_util.vhd" Line 247
+Preparing test: xori
+Running test: xori
+INFO: [Simtcl 6-17] Simulation restarted
+Note: @ 00000400 = 1024
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1024] = 00200393
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1025] = 0023CF93
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1026] = 02E00593
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1027] = 02C5CF93
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1028] = FFFFFFFF
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
 
 Note: pout expect   : 0x00000000  get : 0x00000000
-Time: 60 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+Time: 90 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+
+Note: pout expect   : 0x00000002  get : 0x00000002
+Time: 150 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
 Note: PASSED 
-Time: 60 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+Time: 150 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
 Failure: Assertion violation
-Time: 60 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/tb_autotest.vhd
-$finish called at time : 60 ns : File "/user/8/.base/sekkala/home/projet/errazkim_sekkala/vhd/bench/tb_autotest.vhd" Line 203
+Time: 150 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+$finish called at time : 150 ns : File "/user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd" Line 203
+Preparing test: xor
+Running test: xor
+INFO: [Simtcl 6-17] Simulation restarted
+Note: @ 00000400 = 1024
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1024] = 00200393
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1025] = 0073CFB3
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1026] = 02C00513
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1027] = 02E00593
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1028] = 00A5CFB3
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1029] = FFFFFFFF
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+
+Note: pout expect   : 0x00000000  get : 0x00000000
+Time: 90 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+
+Note: pout expect   : 0x00000002  get : 0x00000002
+Time: 180 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+Note: PASSED 
+Time: 180 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+Failure: Assertion violation
+Time: 180 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+$finish called at time : 180 ns : File "/user/6/.base/errazkim/home/CEP/errazkim_sekkala/vhd/bench/tb_autotest.vhd" Line 203
 ## exit
-INFO: [Common 17-206] Exiting xsim at Mon Apr 11 14:55:51 2022...
+INFO: [Common 17-206] Exiting xsim at Fri Apr 15 13:41:48 2022...
