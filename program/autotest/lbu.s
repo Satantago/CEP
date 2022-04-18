@@ -2,7 +2,7 @@
 	.text
 	lui x11, 6
 	lui x14 , 1
-	lb x31, 0(x14)
+	lbu x31, 0(x14)
 	
 	
 	# max_cycle 50

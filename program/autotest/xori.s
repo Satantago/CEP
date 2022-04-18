@@ -2,11 +2,11 @@
 	.text
 	
 	li x7, 2
-	xor x31, x7, 2
+	xori x31, x7, 2
 	
 
 	li x11, 46
-	xor x31, x11, 44
+	xori x31, x11, 44
 	
 	
 	# max_cycle 50
