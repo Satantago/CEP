@@ -2,7 +2,7 @@
 	.text
 	
 	li x15,  0x600
-	srli x31 , x15 , 38
+	srli x31 , x15 , 5
 	
 	# max_cycle 50
 	# pout_start
