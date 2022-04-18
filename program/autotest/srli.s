@@ -1,10 +1,10 @@
 # TAG = srli
 	.text
 	
-	li x31,  0
-	
+	li x15,  0x600
+	srli x31 , x15 , 38
 	
 	# max_cycle 50
 	# pout_start
-	# 00000000
+	# 00000030
 	# pout_end
