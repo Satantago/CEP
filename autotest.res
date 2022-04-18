@@ -9,12 +9,12 @@ bgeu        PASSED
 blt         PASSED
 bltu        PASSED
 bne         PASSED
-jalr        FAILED
+jalr        TIMEOUT
 JAL         PASSED
 lb          PASSED
 lbu         PASSED
-lh          FAILED
-lhu         FAILED
+lh          PASSED
+lhu         PASSED
 lui         PASSED
 lw          PASSED
 ori         PASSED

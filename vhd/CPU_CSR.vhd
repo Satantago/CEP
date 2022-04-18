@@ -52,6 +52,93 @@ architecture RTL of CPU_CSR is
         end case;
         return res;
     end CSR_write;
+signal outofmcause, outofmip,to_csr, outofmie,outofmstatus,outofmtvec,inmepc,outofmepc : w32;
+signal reg_iq : std_logic;
+    begin
+    	r_mcause : process(clk)
+    	begin
+    	if rising_edge(clk) then
+    		if rst = '1' then
+    			outofmcause <= (others => '0');
+    	        elsif irq = '1' then
+    			outofmcause <= CSR_write(mcause, (others => '0') , WRITE_mode_simple);
+    		end if;
+    	end if;
+    	end process;
+    	r_mip : process(clk)
+    	begin
+    	if rising_edge(clk) then
+    		outofmip <= (11 => meip, 7 => mtip , others => '0') ;
+    	end if;
+    	end process;
+    	
+    	r_mie : process(clk)
+    	begin
+    	if rising_edge(clk) then
+    		if rst='1' then
+    			outofmie <= (others => '0');
+    		elsif cmd.CSR_we = CSR_mie then
+    			outofmie <= to_csr;
+    		end if;
+    	end if;
+    	end process;
+    	r_mstatus : process(clk)
+    	begin
+    	if rising_edge(clk) then
+    		if rst='1' then
+    			outofmstatus <= (others => '0');
+    		elsif cmd.MSTATUS_mie_reset='1' then
+    			outofmstatus <= CSR_write(to_csr, (3=>'1', others =>'0'),WRITE_mode_clear);
+    		elsif cmd.MSTATUS_mie_set = '1' then
+    			outofmstatus <= CSR_write(to_csr, (3=>'1', others => '0'),WRITE_mode_set);
+    		elsif cmd.CSR_we = CSR_mstatus then
+    			outofmstatus <= CSR_write(to_csr, (others => '0'), WRITE_mode_simple);
+    		end if;
+    	end if;
+    	end process;
+    	r_mtvec : process(clk)
+    	begin
+    	if rising_edge(clk) then
+    		if rst='1' then
+    			outofmtvec <= (others => '0');
+    		elsif cmd.CSR_we = CSR_mtvec then
+    			outofmtvec <= to_csr;
+    		end if;
+    	end if;
+    	end process;
+    	r_mepc : process(clk)
+    	begin
+    	if rising_edge(clk) then
+    		if rst='1' then
+    			outofmepc <= (others => '0');
+    		elsif cmd.CSR_we = CSR_mepc then
+    			outofmepc <= inmepc;
+    		end if;
+    	end if;
+    	end process;
+    	registre_irq : process(clk)
+    	begin
+    		if rising_edge(clk) then
+    			if rst='1' then
+    				reg_iq <= '0';
+    			else
+    				reg_iq <= irq ;
+    			end if;
+    		end if;
+    	end process;
+-- equations
+it <= reg_iq and outofmstatus(3);	
 
-begin
+with cmd.CSR_sel select
+CSR <= outofmcause when CSR_from_mcause,
+	outofmip when CSR_from_mip ,
+	outofmie when CSR_from_mie ,
+	outofmstatus when CSR_from_mstatus,
+	outofmtvec when CSR_from_mtvec,
+	outofmepc when CSR_from_mepc,
+	(others =>'0') when others;
+	
+inmepc <= to_csr when cmd.MEPC_sel = mepc_from_csr else pc;
+
+to_csr <= RS1 when cmd.TO_CSR_sel = TO_csr_from_rs1 else imm;	
 end architecture;

@@ -387,24 +387,22 @@ Running test: jalr
 INFO: [Simtcl 6-17] Simulation restarted
 Note: @ 00000400 = 1024
 Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/waerrazki/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
-Note: memory[1024] = 00001537
+Note: memory[1024] = 00000537
 Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/waerrazki/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
-Note: memory[1025] = 00C50513
+Note: memory[1025] = 01050513
 Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/waerrazki/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
-Note: memory[1026] = 00050FE7
+Note: memory[1026] = 000507E7
 Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/waerrazki/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
-Note: memory[1027] = 00800F93
+Note: memory[1027] = 00F00F93
 Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/waerrazki/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
 Note: memory[1028] = 00900F93
 Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/waerrazki/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
 Note: memory[1029] = FFFFFFFF
 Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/waerrazki/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
 
-Note: FAILED 
-Time: 120 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/8/.base/sekkala/home/waerrazki/errazkim_sekkala/vhd/bench/tb_autotest.vhd
-Failure: Assertion violation
-Time: 120 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/8/.base/sekkala/home/waerrazki/errazkim_sekkala/vhd/bench/tb_autotest.vhd
-$finish called at time : 120 ns : File "/user/8/.base/sekkala/home/waerrazki/errazkim_sekkala/vhd/bench/tb_autotest.vhd" Line 203
+Failure: Timeout : 50 cycles
+Time: 500 ns  Iteration: 0  Process: /tb_autotest/line__66  File: /user/8/.base/sekkala/home/waerrazki/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+$finish called at time : 500 ns : File "/user/8/.base/sekkala/home/waerrazki/errazkim_sekkala/vhd/bench/txt_util.vhd" Line 247
 Preparing test: JAL
 Running test: JAL
 INFO: [Simtcl 6-17] Simulation restarted
@@ -431,73 +429,85 @@ Running test: lb
 INFO: [Simtcl 6-17] Simulation restarted
 Note: @ 00000400 = 1024
 Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/waerrazki/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
-Note: memory[1024] = 00001737
+Note: memory[1024] = 000065B7
 Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/waerrazki/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
-Note: memory[1025] = 00070F83
+Note: memory[1025] = 00001737
 Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/waerrazki/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
-Note: memory[1026] = FFFFFFFF
+Note: memory[1026] = 00070F83
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/waerrazki/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1027] = FFFFFFFF
 Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/waerrazki/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
 
-Note: pout expect   : 0x00000037  get : 0x00000037
-Time: 110 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/8/.base/sekkala/home/waerrazki/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+Note: pout expect   : 0xFFFFFFB7  get : 0xFFFFFFB7
+Time: 140 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/8/.base/sekkala/home/waerrazki/errazkim_sekkala/vhd/bench/tb_autotest.vhd
 Note: PASSED 
-Time: 110 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/8/.base/sekkala/home/waerrazki/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+Time: 140 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/8/.base/sekkala/home/waerrazki/errazkim_sekkala/vhd/bench/tb_autotest.vhd
 Failure: Assertion violation
-Time: 110 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/8/.base/sekkala/home/waerrazki/errazkim_sekkala/vhd/bench/tb_autotest.vhd
-$finish called at time : 110 ns : File "/user/8/.base/sekkala/home/waerrazki/errazkim_sekkala/vhd/bench/tb_autotest.vhd" Line 203
+Time: 140 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/8/.base/sekkala/home/waerrazki/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+$finish called at time : 140 ns : File "/user/8/.base/sekkala/home/waerrazki/errazkim_sekkala/vhd/bench/tb_autotest.vhd" Line 203
 Preparing test: lbu
 Running test: lbu
 INFO: [Simtcl 6-17] Simulation restarted
 Note: @ 00000400 = 1024
 Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/waerrazki/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
-Note: memory[1024] = 00001737
+Note: memory[1024] = 000065B7
 Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/waerrazki/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
-Note: memory[1025] = 00074F83
+Note: memory[1025] = 00001737
 Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/waerrazki/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
-Note: memory[1026] = FFFFFFFF
+Note: memory[1026] = 00074F83
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/waerrazki/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1027] = FFFFFFFF
 Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/waerrazki/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
 
-Note: pout expect   : 0x00000037  get : 0x00000037
-Time: 110 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/8/.base/sekkala/home/waerrazki/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+Note: pout expect   : 0x000000B7  get : 0x000000B7
+Time: 140 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/8/.base/sekkala/home/waerrazki/errazkim_sekkala/vhd/bench/tb_autotest.vhd
 Note: PASSED 
-Time: 110 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/8/.base/sekkala/home/waerrazki/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+Time: 140 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/8/.base/sekkala/home/waerrazki/errazkim_sekkala/vhd/bench/tb_autotest.vhd
 Failure: Assertion violation
-Time: 110 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/8/.base/sekkala/home/waerrazki/errazkim_sekkala/vhd/bench/tb_autotest.vhd
-$finish called at time : 110 ns : File "/user/8/.base/sekkala/home/waerrazki/errazkim_sekkala/vhd/bench/tb_autotest.vhd" Line 203
+Time: 140 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/8/.base/sekkala/home/waerrazki/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+$finish called at time : 140 ns : File "/user/8/.base/sekkala/home/waerrazki/errazkim_sekkala/vhd/bench/tb_autotest.vhd" Line 203
 Preparing test: lh
 Running test: lh
 INFO: [Simtcl 6-17] Simulation restarted
 Note: @ 00000400 = 1024
 Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/waerrazki/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
-Note: memory[1024] = 00001737
+Note: memory[1024] = 000065B7
 Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/waerrazki/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
-Note: memory[1025] = 00071F83
+Note: memory[1025] = 00001737
 Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/waerrazki/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
-Note: memory[1026] = FFFFFFFF
+Note: memory[1026] = 00071F83
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/waerrazki/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1027] = FFFFFFFF
 Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/waerrazki/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
 
-Note: FAILED 
-Time: 110 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/8/.base/sekkala/home/waerrazki/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+Note: pout expect   : 0x000065B7  get : 0x000065B7
+Time: 140 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/8/.base/sekkala/home/waerrazki/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+Note: PASSED 
+Time: 140 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/8/.base/sekkala/home/waerrazki/errazkim_sekkala/vhd/bench/tb_autotest.vhd
 Failure: Assertion violation
-Time: 110 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/8/.base/sekkala/home/waerrazki/errazkim_sekkala/vhd/bench/tb_autotest.vhd
-$finish called at time : 110 ns : File "/user/8/.base/sekkala/home/waerrazki/errazkim_sekkala/vhd/bench/tb_autotest.vhd" Line 203
+Time: 140 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/8/.base/sekkala/home/waerrazki/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+$finish called at time : 140 ns : File "/user/8/.base/sekkala/home/waerrazki/errazkim_sekkala/vhd/bench/tb_autotest.vhd" Line 203
 Preparing test: lhu
 Running test: lhu
 INFO: [Simtcl 6-17] Simulation restarted
 Note: @ 00000400 = 1024
 Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/waerrazki/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
-Note: memory[1024] = 00001737
+Note: memory[1024] = 000065B7
 Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/waerrazki/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
-Note: memory[1025] = 00075F83
+Note: memory[1025] = 00001737
 Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/waerrazki/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
-Note: memory[1026] = FFFFFFFF
+Note: memory[1026] = 00075F83
+Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/waerrazki/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
+Note: memory[1027] = FFFFFFFF
 Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/waerrazki/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
 
-Note: FAILED 
-Time: 110 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/8/.base/sekkala/home/waerrazki/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+Note: pout expect   : 0x000065B7  get : 0x000065B7
+Time: 140 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/8/.base/sekkala/home/waerrazki/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+Note: PASSED 
+Time: 140 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/8/.base/sekkala/home/waerrazki/errazkim_sekkala/vhd/bench/tb_autotest.vhd
 Failure: Assertion violation
-Time: 110 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/8/.base/sekkala/home/waerrazki/errazkim_sekkala/vhd/bench/tb_autotest.vhd
-$finish called at time : 110 ns : File "/user/8/.base/sekkala/home/waerrazki/errazkim_sekkala/vhd/bench/tb_autotest.vhd" Line 203
+Time: 140 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/8/.base/sekkala/home/waerrazki/errazkim_sekkala/vhd/bench/tb_autotest.vhd
+$finish called at time : 140 ns : File "/user/8/.base/sekkala/home/waerrazki/errazkim_sekkala/vhd/bench/tb_autotest.vhd" Line 203
 Preparing test: lui
 Running test: lui
 INFO: [Simtcl 6-17] Simulation restarted
@@ -643,7 +653,7 @@ Note: memory[1025] = 014F0F13
 Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/waerrazki/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
 Note: memory[1026] = 00600793
 Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/waerrazki/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
-Note: memory[1027] = 00FF2023
+Note: memory[1027] = 00FF0023
 Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/waerrazki/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
 Note: memory[1028] = 000F2F83
 Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/waerrazki/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
@@ -667,7 +677,7 @@ Note: memory[1025] = 014F0F13
 Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/waerrazki/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
 Note: memory[1026] = 00600793
 Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/waerrazki/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
-Note: memory[1027] = 00FF2023
+Note: memory[1027] = 00FF1023
 Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/waerrazki/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
 Note: memory[1028] = 000F2F83
 Time: 0 ps  Iteration: 1  Process: /tb_autotest/C_RAM/line__149  File: /user/8/.base/sekkala/home/waerrazki/errazkim_sekkala/vhd/bench/RAM32_reload.vhd
@@ -981,4 +991,4 @@ Failure: Assertion violation
 Time: 180 ns  Iteration: 1  Process: /tb_autotest/tb_pout  File: /user/8/.base/sekkala/home/waerrazki/errazkim_sekkala/vhd/bench/tb_autotest.vhd
 $finish called at time : 180 ns : File "/user/8/.base/sekkala/home/waerrazki/errazkim_sekkala/vhd/bench/tb_autotest.vhd" Line 203
 ## exit
-INFO: [Common 17-206] Exiting xsim at Mon Apr 18 15:30:39 2022...
+INFO: [Common 17-206] Exiting xsim at Mon Apr 18 16:07:09 2022...
