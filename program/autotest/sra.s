@@ -1,10 +1,14 @@
 # TAG = sra
 	.text
 	
-	li x31,  0
-	
+	# TAG = srai
+	.text
+	li x15 , 0x7000
+	li x16 , 33 
+	sra x31 , x15 , x16
 	
 	# max_cycle 50
 	# pout_start
-	# 00000000
+	# 00003800
 	# pout_end
+	
