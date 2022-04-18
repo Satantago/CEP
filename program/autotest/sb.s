@@ -1,4 +1,4 @@
-# TAG = sw
+# TAG = sb
 	.text
 	
 	.data
