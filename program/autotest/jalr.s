@@ -1,6 +1,6 @@
 # TAG = JALR
 	.text
-	lui x10 , 0
+	lui x10 , 1
 	addi x10, x10 , 16
 	jalr x15, 0(x10)
 	li x31 , 15
