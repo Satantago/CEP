@@ -7,6 +7,6 @@
 	
 	# max_cycle 50
 	# pout_start
-	# 000000B7
+	# FFFFFFB7
 	# pout_end
 	
