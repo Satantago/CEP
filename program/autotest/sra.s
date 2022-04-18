@@ -1,8 +1,6 @@
 # TAG = sra
 	.text
 	
-	# TAG = srai
-	.text
 	li x15 , 0x7000
 	li x16 , 33 
 	sra x31 , x15 , x16
