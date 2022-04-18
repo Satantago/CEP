@@ -1,10 +1,11 @@
 # TAG = slli
 	.text
 	
-	li x31,  0
+	li x10, 2
+	slli x31, x10, 1
 	
 	
 	# max_cycle 50
 	# pout_start
-	# 00000000
+	# 00000004
 	# pout_end
