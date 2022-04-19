@@ -54,7 +54,6 @@ architecture RTL of CPU_CSR is
     end CSR_write;
 signal outofmcause, outofmip,to_csr,inmie, outofmie,inmstatus,inmtvec,outofmtvec,inmepc,outofmepc, bla : w32;
 signal outofmstatus : w32;
-signal reg_iq : std_logic;
     begin
     	r_mcause : process(clk)
     	begin
@@ -84,7 +83,7 @@ signal reg_iq : std_logic;
     		if rst='1' then
     			outofmie <= w32_zero;
     		elsif cmd.CSR_we = CSR_mie then
-    			outofmie <= to_csr;
+    			outofmie <= inmie;
     		end if;
     	end if;
     	end process;
@@ -144,7 +143,7 @@ signal reg_iq : std_logic;
     	elsif cmd.csr_we = CSR_mie then
         	inmie <= csr_write(TO_CSR, outofmie, cmd.CSR_WRITE_mode);
     	end if ;
-end process ;   
+	end process ;   
 -- equations
 it <= irq and outofmstatus(3);	
 mepc <= outofmepc;
