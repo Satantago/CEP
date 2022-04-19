@@ -95,13 +95,13 @@ signal reg_iq : std_logic;
     			outofmstatus <= w32_zero;
     		else
                  	outofmstatus <= inmstatus;
-                end if;
                 if cmd.mstatus_mie_set = '1' then
                     	outofmstatus(3) <= '1';
-                end if;
                 if cmd.mstatus_mie_reset = '1' then
                    	oufofmstatus(3) <= '0';
-        	end if ;
+                end if;
+                end if;
+                end if;
  	end if;
     	end process;
     	r_mtvec : process(clk)
