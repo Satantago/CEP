@@ -820,6 +820,7 @@ cmd.cs.CSR_WRITE_mode <= UNDEFINED;
         		cmd.PC_we <= '1';
         		cmd.CS.MSTATUS_mie_set <= '1' ;
         		state_d <= S_Pre_Fetch;
+        		
                  end if;
             when others => null;
             end case;
