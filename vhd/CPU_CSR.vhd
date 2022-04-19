@@ -52,7 +52,7 @@ architecture RTL of CPU_CSR is
         end case;
         return res;
     end CSR_write;
-signal outofmcause, outofmip,to_csr,inmie, outofmie,inmstatus,outofmstatus,inmtvec,outofmtvec,inmepc,outofmepc : w32;
+signal outofmcause, outofmip,to_csr,inmie, outofmie,inmstatus,outofmstatus,inmtvec,outofmtvec,inmepc,outofmepc, bla : w32;
 signal reg_iq : std_logic;
     begin
     	r_mcause : process(clk)
@@ -130,7 +130,7 @@ signal reg_iq : std_logic;
  	inmepc <= outofmepc;
  	inmstatus <= outofmstatus;
     	if cmd.csr_we = csr_mepc then 
-        	inmepc <= sign2; 
+        	inmepc <= bla; 
         	inmepc(0)<='0';
         	inmepc(1)<='0';
     	elsif cmd.csr_we = csr_mtvec then 
@@ -157,6 +157,6 @@ CSR <= outofmcause   when  cmd.csr_sel = CSR_FROM_MCAUSE else
        outofmtvec    when  cmd.csr_sel = CSR_FROM_MTVEC else
        outofmepc     when  cmd.csr_sel = CSR_FROM_MEPC;
 
-inmepc <= csr_write(to_csr, outofmepc, cmd.CSR_WRITE_mode) when cmd.MEPC_sel=mepc_from_csr else PC ;
+bla <= csr_write(to_csr, outofmepc, cmd.CSR_WRITE_mode) when cmd.MEPC_sel=mepc_from_csr else PC ;
 to_csr <= RS1 when cmd.TO_CSR_sel = TO_csr_from_rs1 else imm;	
 end architecture;
