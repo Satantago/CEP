@@ -753,6 +753,12 @@ cmd.cs.CSR_WRITE_mode <= UNDEFINED;
 
 ---------- Instructions d'accès aux CSR ----------
 	when S_IT2 =>
+		if status.IR(14) = '0' then
+               	cmd.cs.TO_csr_sel <= TO_CSR_from_rs1;
+            	else 
+			cmd.cs.TO_csr_sel <= TO_CSR_from_imm;
+            	end if;
+            	
 		if status.IR(31 downto 20) = "001100000100" then
                 	cmd.cs.CSR_we <= CSR_mie;
                 	cmd.cs.CSR_sel <= CSR_from_mie;
@@ -771,11 +777,6 @@ cmd.cs.CSR_WRITE_mode <= UNDEFINED;
                 	cmd.cs.CSR_we <= CSR_mstatus;
                 	cmd.cs.CSR_sel <= CSR_from_mstatus;
                 end if;
-                if status.IR(14) = '0' then
-               	cmd.cs.TO_csr_sel <= TO_CSR_from_rs1;
-            	else 
-			cmd.cs.TO_csr_sel <= TO_CSR_from_imm;
-            	end if;
             	
             	-- CSRRW
          	if status.IR(14 downto 12) = "001" then
