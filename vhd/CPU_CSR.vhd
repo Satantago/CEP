@@ -94,6 +94,7 @@ signal outofmstatus : w32;
     			outofmstatus <= w32_zero;
     		else
                  	outofmstatus <= inmstatus;
+                -- on change malgré tout sous ces conditions
                 if cmd.mstatus_mie_set = '1' then
                     	outofmstatus(3) <= '1';
                 if cmd.mstatus_mie_reset = '1' then
