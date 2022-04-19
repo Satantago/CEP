@@ -77,7 +77,17 @@ architecture RTL of CPU_PC is
 	S_BGEU,
 	S_BLT,
 	S_BLTU,
-	S_BNE
+	S_BNE,
+	S_CSRRC,
+	S_CSRRCI,
+	S_CSRRS,
+	S_CSRRSI,
+	S_CSRRW,
+	S_CSRRWI,
+	S_IT1,
+	S_IT2,
+	S_CND,
+	S_MRET
     );
 
     signal state_d, state_q : State_type;
@@ -161,6 +171,13 @@ cmd.cs.CSR_WRITE_mode <= UNDEFINED;
                 cmd.mem_ce   <= '1';
                 cmd.ADDR_sel <= ADDR_from_pc;
                 state_d      <= S_Fetch;
+            when S_IT1 =>
+                  cmd.PC_we <= '1' ;
+            	  cmd.PC_sel <= PC_mtvec ;
+            	  cmd.CS.MSTATUS_mie_reset <= '1' ;
+                 cmd.CS.MEPC_sel <= MEPC_from_pc ;
+                 cmd.CS.CSR_we <= CSR_mepc ;
+                 state_d <= S_Pre_Fetch;
 
             when S_Fetch =>
                 -- IR <- mem_datain
@@ -173,6 +190,13 @@ cmd.cs.CSR_WRITE_mode <= UNDEFINED;
 	   	-- et ne pas le faire juste pour les branchements et auipc
 		if status.IR(6 downto 0) = "1100011" and status.IR(14 downto 12) = "000" then
 			state_d <= S_beq;
+		elsif status.IR(6 downto 0) = "1110011" then
+			cmd.TO_PC_Y_sel <= TO_PC_Y_cst_x04;
+            		cmd.PC_sel <= PC_from_pc;
+            		cmd.PC_we <= '1';
+            		state_d <= S_IT2;
+            	elsif status.IR(6 downto 0) = "1100011" then 
+			state_d <= S_CND;
 		elsif status.IR(6 downto 0) = "1100011" and status.IR(14 downto 12) = "111" then
 			state_d <= S_beq;
 		elsif status.IR(6 downto 0) = "1100011" and status.IR(14 downto 12) = "101" then
@@ -730,9 +754,75 @@ cmd.cs.CSR_WRITE_mode <= UNDEFINED;
 
 
 ---------- Instructions d'accès aux CSR ----------
-
+	when S_IT2 =>
+		if status.IR(31 downto 20) = "001100000100" then
+                	cmd.cs.CSR_we <= CSR_mie;
+                	cmd.cs.CSR_sel <= CSR_from_mie;
+                elsif status.IR(31 downto 20) = "001100000101" then
+                	cmd.cs.CSR_we <= CSR_mtvec;
+                	cmd.cs.CSR_sel <= CSR_from_mtvec;
+                elsif status.IR(31 downto 20) = "001101000010" then
+                	cmd.cs.CSR_sel <= CSR_from_mcause;
+                elsif status.IR(31 downto 20) = "001101000100" then
+                cmd.cs.CSR_sel <= CSR_from_mip;
+                elsif status.IR(31 downto 20) = "001101000001" then
+                	cmd.cs.CSR_we <= CSR_mepc;
+                	cmd.cs.CSR_sel <= CSR_from_mepc;
+                	cmd.cs.MEPC_sel <= MEPC_from_csr;
+                elsif status.IR(31 downto 20) = "001100000000" then
+                	cmd.cs.CSR_we <= CSR_mstatus;
+                	cmd.cs.CSR_sel <= CSR_from_mstatus;
+               if status.IR(14) = '0' then
+               	cmd.cs.TO_csr_sel <= TO_CSR_from_rs1;
+                	cmd.cs.TO_csr_sel <= TO_CSR_from_imm;
+            	else 
+			cmd.cs.TO_csr_sel <= TO_CSR_from_imm;
+            	end if;
+            	-- CSRRW
+         	if status.IR(14 downto 12) = "001" then
+                	cmd.RF_we <= '1';
+                	cmd.DATA_sel <= DATA_from_csr;
+                	cmd.cs.CSR_WRITE_mode <= WRITE_mode_simple;
+                	state_d <= S_Pre_fetch;
+               --CSRRWI
+                elsif status.IR(14 downto 12) = "101" then
+                	cmd.RF_we <= '1';
+                	cmd.DATA_sel <= DATA_from_csr;
+                	cmd.cs.CSR_WRITE_mode <= WRITE_mode_simple;
+                	state_d <= S_Pre_fetch;
+               -- CSRRC
+		 elsif status.IR(13 downto 12) = "011" then 
+                	cmd.RF_we <= '1';
+                	cmd.DATA_sel <= DATA_from_csr;
+                	cmd.cs.CSR_WRITE_mode <= WRITE_mode_clear;
+                	state_d <= S_pre_fetch;
+                --CSRRCI
+                 elsif status.IR(13 downto 12) = "011" then 
+                	cmd.RF_we <= '1';
+                	cmd.DATA_sel <= DATA_from_csr;
+                	cmd.cs.CSR_WRITE_mode <= WRITE_mode_clear;
+                	state_d <= S_pre_fetch;
+                --CSRRS
+                 elsif status.IR(14 downto 12) = "010" then 
+                	cmd.RF_we <= '1';
+                	cmd.DATA_sel <= DATA_from_csr;
+                	cmd.cs.CSR_WRITE_mode <= WRITE_mode_set;
+                	state_d <= S_Pre_fetch;
+                --CSRRSI
+                 elsif status.IR(14 downto 12) = "110" then 
+                	cmd.RF_we <= '1';
+                	cmd.DATA_sel <= DATA_from_csr;
+                	cmd.cs.CSR_WRITE_mode <= WRITE_mode_set;
+                	state_d <= S_Pre_fetch;	
+                --mret
+                 elsif status.IR(14 downto 12) = "000" then 
+                	cmd.PC_sel <= PC_from_mepc;
+        		cmd.PC_we <= '1';
+        		cmd.CS.MSTATUS_mie_set <= '1' ;
+        		state_d <= S_Pre_Fetch;
+                 end if;
             when others => null;
-        end case;
+            end case;
 
     end process FSM_comb;
 
