@@ -785,43 +785,43 @@ cmd.cs.CSR_WRITE_mode <= UNDEFINED;
                 	cmd.cs.CSR_WRITE_mode <= WRITE_mode_simple;
                 	state_d <= S_Pre_fetch;
                --CSRRWI
-                elsif status.IR(14 downto 12) = "101" then
+               elsif status.IR(14 downto 12) = "101" then
                 	cmd.RF_we <= '1';
                 	cmd.DATA_sel <= DATA_from_csr;
                 	cmd.cs.CSR_WRITE_mode <= WRITE_mode_simple;
                 	state_d <= S_Pre_fetch;
                -- CSRRC
-		 elsif status.IR(13 downto 12) = "011" then 
+		elsif status.IR(13 downto 12) = "011" then 
                 	cmd.RF_we <= '1';
                 	cmd.DATA_sel <= DATA_from_csr;
                 	cmd.cs.CSR_WRITE_mode <= WRITE_mode_clear;
                 	state_d <= S_pre_fetch;
                 --CSRRCI
-                 elsif status.IR(13 downto 12) = "011" then 
+                elsif status.IR(13 downto 12) = "011" then 
                 	cmd.RF_we <= '1';
                 	cmd.DATA_sel <= DATA_from_csr;
                 	cmd.cs.CSR_WRITE_mode <= WRITE_mode_clear;
                 	state_d <= S_pre_fetch;
                 --CSRRS
-                 elsif status.IR(14 downto 12) = "010" then 
+                elsif status.IR(14 downto 12) = "010" then 
                 	cmd.RF_we <= '1';
                 	cmd.DATA_sel <= DATA_from_csr;
                 	cmd.cs.CSR_WRITE_mode <= WRITE_mode_set;
                 	state_d <= S_Pre_fetch;
                 --CSRRSI
-                 elsif status.IR(14 downto 12) = "110" then 
+                elsif status.IR(14 downto 12) = "110" then 
                 	cmd.RF_we <= '1';
                 	cmd.DATA_sel <= DATA_from_csr;
                 	cmd.cs.CSR_WRITE_mode <= WRITE_mode_set;
                 	state_d <= S_Pre_fetch;	
                 --mret
-                 elsif status.IR(14 downto 12) = "000" then 
+                elsif status.IR(14 downto 12) = "000" then 
                 	cmd.PC_sel <= PC_from_mepc;
         		cmd.PC_we <= '1';
         		cmd.CS.MSTATUS_mie_set <= '1' ;
         		state_d <= S_Pre_Fetch;
         		
-                 end if;
+                end if;
             when others => null;
             end case;
 
