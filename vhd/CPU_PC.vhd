@@ -773,7 +773,6 @@ cmd.cs.CSR_WRITE_mode <= UNDEFINED;
                 	cmd.cs.CSR_we <= CSR_mstatus;
                 	cmd.cs.CSR_sel <= CSR_from_mstatus;
                 end if;
-                
                 if status.IR(14) = '0' then
                	cmd.cs.TO_csr_sel <= TO_CSR_from_rs1;
             	else 
