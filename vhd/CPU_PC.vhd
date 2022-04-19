@@ -195,8 +195,6 @@ cmd.cs.CSR_WRITE_mode <= UNDEFINED;
             		cmd.PC_sel <= PC_from_pc;
             		cmd.PC_we <= '1';
             		state_d <= S_IT2;
-            	elsif status.IR(6 downto 0) = "1100011" then 
-			state_d <= S_CND;
 		elsif status.IR(6 downto 0) = "1100011" and status.IR(14 downto 12) = "111" then
 			state_d <= S_beq;
 		elsif status.IR(6 downto 0) = "1100011" and status.IR(14 downto 12) = "101" then
