@@ -100,6 +100,7 @@ signal reg_iq : std_logic;
                 if cmd.mstatus_mie_reset = '1' then
                    	oufofmstatus(3) <= '0';
                 end if;
+                
                 end if;
                 end if;
  	end if;
