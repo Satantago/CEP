@@ -97,9 +97,8 @@ signal outofmstatus : w32;
                 if cmd.mstatus_mie_set = '1' then
                     	outofmstatus(3) <= '1';
                 if cmd.mstatus_mie_reset = '1' then
-                   	oufofmstatus(3) <= '0';
+                   	outofmstatus(3) <= '0' ;
                 end if;
-                
                 end if;
                 end if;
  	end if;
