@@ -818,10 +818,10 @@ cmd.cs.CSR_WRITE_mode <= UNDEFINED;
                 elsif status.IR(14 downto 12) = "000" then 
                 	cmd.PC_sel <= PC_from_mepc;
         		cmd.PC_we <= '1';
-        		cmd.CS.MSTATUS_mie_set <= '1' ;
+        		cmd.CS.MSTATUS_mie_set <= '1';
         		state_d <= S_Pre_Fetch;
-        		
                 end if;
+                
             when others => null;
             end case;
 
