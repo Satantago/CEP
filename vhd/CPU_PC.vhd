@@ -778,6 +778,7 @@ cmd.cs.CSR_WRITE_mode <= UNDEFINED;
             	else 
 			cmd.cs.TO_csr_sel <= TO_CSR_from_imm;
             	end if;
+            	
             	-- CSRRW
          	if status.IR(14 downto 12) = "001" then
                 	cmd.RF_we <= '1';
