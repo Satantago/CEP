@@ -790,13 +790,13 @@ cmd.cs.CSR_WRITE_mode <= UNDEFINED;
                 	cmd.cs.CSR_WRITE_mode <= WRITE_mode_simple;
                 	state_d <= S_Pre_fetch;
                -- CSRRC
-		elsif status.IR(13 downto 12) = "011" then 
+		elsif status.IR(14 downto 12) = "011" then 
                 	cmd.RF_we <= '1';
                 	cmd.DATA_sel <= DATA_from_csr;
                 	cmd.cs.CSR_WRITE_mode <= WRITE_mode_clear;
                 	state_d <= S_pre_fetch;
                 --CSRRCI
-                elsif status.IR(13 downto 12) = "011" then 
+                elsif status.IR(14 downto 12) = "011" then 
                 	cmd.RF_we <= '1';
                 	cmd.DATA_sel <= DATA_from_csr;
                 	cmd.cs.CSR_WRITE_mode <= WRITE_mode_clear;
