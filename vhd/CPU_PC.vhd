@@ -764,7 +764,7 @@ cmd.cs.CSR_WRITE_mode <= UNDEFINED;
                 elsif status.IR(31 downto 20) = "001101000010" then
                 	cmd.cs.CSR_sel <= CSR_from_mcause;
                 elsif status.IR(31 downto 20) = "001101000100" then
-                cmd.cs.CSR_sel <= CSR_from_mip;
+                	cmd.cs.CSR_sel <= CSR_from_mip;
                 elsif status.IR(31 downto 20) = "001101000001" then
                 	cmd.cs.CSR_we <= CSR_mepc;
                 	cmd.cs.CSR_sel <= CSR_from_mepc;
@@ -774,7 +774,6 @@ cmd.cs.CSR_WRITE_mode <= UNDEFINED;
                 	cmd.cs.CSR_sel <= CSR_from_mstatus;
                elsif status.IR(14) = '0' then
                	cmd.cs.TO_csr_sel <= TO_CSR_from_rs1;
-                	cmd.cs.TO_csr_sel <= TO_CSR_from_imm;
             	else 
 			cmd.cs.TO_csr_sel <= TO_CSR_from_imm;
             	end if;
