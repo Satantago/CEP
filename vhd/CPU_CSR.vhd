@@ -82,7 +82,7 @@ signal outofmstatus : w32;
     	if rising_edge(clk) then
     		if rst='1' then
     			outofmie <= w32_zero;
-    		elsif cmd.CSR_we = CSR_mie then
+    		else
     			outofmie <= inmie;
     		end if;
     	end if;
@@ -109,7 +109,7 @@ signal outofmstatus : w32;
     	if rising_edge(clk) then
     		if rst='1' then
     			outofmtvec <= w32_zero;
-    		elsif cmd.CSR_we = CSR_mtvec then
+    		else
     			outofmtvec <= inmtvec;
     		end if;
     	end if;
@@ -119,12 +119,14 @@ signal outofmstatus : w32;
     	if rising_edge(clk) then
     		if rst='1' then
     			outofmepc <= w32_zero;
-    		elsif cmd.CSR_we = CSR_mepc then
+    		else
     			outofmepc <= inmepc;
     		end if;
     	end if;
     	end process;
-	process(all)
+    	-- juste pour une lecture plus facile
+    	bla <= csr_write(to_csr, outofmepc, cmd.CSR_WRITE_mode) when cmd.MEPC_sel=mepc_from_csr else PC ;
+process(all)
  	begin 
  	inmie <= outofmie;
  	inmtvec <= outofmtvec;
@@ -158,6 +160,5 @@ CSR <= outofmcause   when  cmd.csr_sel = CSR_FROM_MCAUSE else
        outofmtvec    when  cmd.csr_sel = CSR_FROM_MTVEC else
        outofmepc     when  cmd.csr_sel = CSR_FROM_MEPC;
 
-bla <= csr_write(to_csr, outofmepc, cmd.CSR_WRITE_mode) when cmd.MEPC_sel=mepc_from_csr else PC ;
 to_csr <= RS1 when cmd.TO_CSR_sel = TO_csr_from_rs1 else imm;	
 end architecture;
